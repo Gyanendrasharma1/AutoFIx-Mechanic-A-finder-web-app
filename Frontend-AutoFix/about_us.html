@@ -11,78 +11,194 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
 <style>
-    /* About Us Styling */
-#about-us {
-    background-color: #f8f9fa;
-    padding: 40px;
-    font-family: 'Arial', sans-serif;
-}
-
-.about-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: left;
+    
+/* General Styling */
+.about-us-container {
+    padding: 60px;
+    background: linear-gradient(135deg, #e6f2ff 0%, #cce7ff 100%); /* Gradient background for depth */
     color: #333;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 1.5s ease-in;
 }
 
-.about-content h1 {
+/* Content Centering */
+.about-us-content {
+    max-width: 900px;
+    margin: auto;
     text-align: center;
-    color: #2c3e50;
-    font-size: 36px;
-    margin-bottom: 20px;
 }
 
-.about-content h2 {
-    color: #28a745;
-    font-size: 28px;
+.about-us-content h1 {
+    font-size: 40px; /* Larger font size for emphasis */
+    color: #003366; /* Darker blue for headings */
+    margin-bottom: 30px;
+    animation: slideInDown 1s ease-out;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.about-us-content p {
+    font-size: 22px; /* Increased font size for readability */
+    line-height: 1.6; /* Improved line height */
+    margin-bottom: 30px; /* More margin for separation */
+    transition: color 0.3s ease; /* Color transition effect */
+    position: relative;
+}
+
+.about-us-content p:hover {
+    color: #0056b3; /* Change text color on hover */
+    animation: pulse 0.5s; /* Pulse effect on hover */
+}
+
+/* Team Section */
+.team {
+    display: flex;
+    flex-wrap: wrap; /* Allows team members to wrap on smaller screens */
+    justify-content: center; /* Center align team members */
+    margin-top: 40px; /* Space between sections */
+}
+
+.team-member {
+    margin: 15px;
+    padding: 30px; /* More padding for comfort */
+    border: 3px solid #007BFF;
+    border-radius: 15px; /* More rounded corners */
+    background-color: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+    animation: fadeInUp 1s ease-in;
+    position: relative; /* Position for pseudo-elements */
+}
+
+.team-member:hover {
+    transform: translateY(-10px); /* Raised effect on hover */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* General Styling for Sections */
+section {
+    padding: 60px;
     margin: 20px 0;
-    border-left: 4px solid #28a745;
-    padding-left: 10px;
+    background-color: #f9f9f9; /* Light grey background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    animation: fadeInUp 1s ease-in-out;
 }
 
-.about-content p {
-    line-height: 1.8;
+/* Mission Statement */
+.mission-statement h2,
+.values-commitment h2,
+.team h2,
+.our-story h2,
+.testimonials h2,
+.call-to-action h2 {
+    font-size: 28px; /* Heading size */
+    color: #0056b3; /* Darker shade of blue for headings */
     margin-bottom: 20px;
-    font-size: 18px;
+    animation: slideInDown 1s ease-out;
 }
 
-.about-content ul {
-    list-style-type: disc;
+/* Paragraphs and List Items */
+.mission-statement p,
+.values-commitment p,
+.our-story p {
+    font-size: 18px; /* Font size for paragraphs */
+    line-height: 1.6; /* Line height for readability */
+    color: #333; /* Dark text color */
+    margin-bottom: 20px;
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.values-commitment ul {
+    list-style-type: disc; /* Bullet points for list items */
+    margin: 0;
     padding-left: 20px;
-    margin-bottom: 20px;
 }
 
-.about-content ul li {
-    margin-bottom: 10px;
-    font-size: 18px;
+.values-commitment li {
+    margin-bottom: 10px; /* Space between list items */
 }
 
-.about-content strong {
-    color: #28a745;
+/* Team Section */
+.team {
+    display: flex;
+    flex-wrap: wrap; /* Responsive layout */
+    justify-content: center; /* Centering team members */
 }
 
-/* Adding a subtle box shadow for content */
-.about-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.team-member {
+    margin: 15px;
+    padding: 20px;
+    border: 2px solid #007BFF; /* Blue border */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #fff; /* White background for members */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effects */
+    animation: fadeInUp 1s ease-in;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .about-content h1 {
-        font-size: 30px;
-    }
-
-    .about-content h2 {
-        font-size: 24px;
-    }
-
-    .about-content p, .about-content ul li {
-        font-size: 16px;
-    }
+.team-member:hover {
+    transform: translateY(-5px); /* Raise effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
+
+.team-member img {
+    width: 100px; /* Fixed size for images */
+    border-radius: 50%; /* Circular images */
+    margin-bottom: 15px; /* Spacing below image */
+}
+
+/* Testimonials Section */
+.testimonials blockquote {
+    font-size: 18px; /* Consistent font size for testimonials */
+    margin: 10px 0;
+    padding-left: 20px; /* Indentation for quotes */
+    border-left: 4px solid #007BFF; /* Left border for emphasis */
+    font-style: italic; /* Italicized text for quotes */
+    background-color: #ffffff; /* Background for testimonials */
+    padding: 15px; /* Padding for better spacing */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease; /* Transition for background color */
+}
+
+.testimonials blockquote:hover {
+    background-color: #e6f2ff; /* Change background on hover */
+}
+
+/* Call-to-Action Section */
+.call-to-action {
+    text-align: center; /* Center text */
+}
+
+.cta-button {
+    background-color: #007BFF; /* Blue button */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Slightly larger font size */
+    margin: 10px; /* Margin between buttons */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-3px); /* Slight raise effect */
+}
+
+/* CSS Animations */
+@keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+
 
 </style>
 </head>
@@ -98,8 +214,8 @@
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="findmechanic.html">Find Mechanic</a></li>
-                    <li><a href="became_Mechanic.html">Become a Mechanic</a></li>
+                    <li><a href="findmechanic.html" class="restricted-nav">Find Mechanic</a></li>
+                    <li><a href="became_Mechanic.html" class="restricted-nav">Become a Mechanic</a></li>
                     <li><a href="customer_support.html">Customer Support</a></li>
                    
                     <!-- Login/Sign Up Button -->
@@ -110,45 +226,112 @@
     </header>
 
     <!-- About Us Section -->
-    <main id="about-us">
-        <section class="about-content">
+    <main class="about-us-container">
+        <section class="about-us-content">
             <h1>About Us</h1>
-            <p><strong>Welcome to AutoFix</strong>, your one-stop solution for effortless vehicle maintenance and repair services. Founded by <strong>Gyanendra Sharma</strong>, AutoFix was created with a vision to transform the traditional auto repair industry by integrating cutting-edge technology with the convenience of modern digital solutions. Our journey began as a group of passionate tech enthusiasts, all currently pursuing our <strong>Bachelor of Computer Applications (BCA)</strong> in the 5th semester.</p>
-    
-            <h2>Our Core Team</h2>
-            <ul>
-                <li><strong>Vansh Batra:</strong> A strategic thinker and problem solver with expertise in front-end development, ensuring a seamless user experience on our platform.</li>
-                <li><strong>Kartik Gupta:</strong> A backend specialist, responsible for ensuring the robustness and efficiency of our systems.</li>
-                <li><strong>Ajay Jha:</strong> A database wizard who guarantees that our platform can handle large volumes of data with accuracy and speed.</li>
-                <li><strong>Vivek Gautam:</strong> A visionary in UI/UX design, crafting an intuitive and engaging interface for both customers and mechanics.</li>
-            </ul>
-    
-            <h2>Our Mission</h2>
-            <p>At AutoFix, our mission is to <strong>simplify the vehicle repair process</strong> by bridging the gap between vehicle owners and trusted mechanics. We aim to make vehicle maintenance:</p>
-            <ul>
-                <li><strong>Hassle-free:</strong> No more endless searches for a reliable mechanic or spending hours in a repair shop.</li>
-                <li><strong>Efficient:</strong> By using our platform, customers can find and book a mechanic with just a few clicks.</li>
-                <li><strong>Accessible:</strong> We are committed to ensuring that anyone, regardless of their location or vehicle type, can access top-notch repair services.</li>
-            </ul>
-    
-            <h2>Why Choose AutoFix?</h2>
-            <ul>
-                <li><strong>Easy-to-Use Platform:</strong> Our user-friendly web app allows you to quickly find nearby mechanics, book services, and even choose specific repair types based on your vehicle’s needs.</li>
-                <li><strong>Trusted Mechanics:</strong> We work with a network of certified and experienced mechanics, ensuring that you receive reliable service every time.</li>
-                <li><strong>Transparent Pricing:</strong> At AutoFix, we believe in transparency. You’ll know the estimated cost upfront, avoiding unexpected charges or hidden fees.</li>
-                <li><strong>Customer-Centric Approach:</strong> Your satisfaction is our priority. We listen to feedback and continuously improve our platform to better serve our users.</li>
-                <li><strong>Innovative Features:</strong> From real-time tracking to reminders for future maintenance, our platform is designed to make your vehicle care experience smoother than ever.</li>
-            </ul>
+            <p>Welcome to <strong>AutoFix</strong>, your go-to solution for finding trusted and skilled mechanics at your convenience. Our mission is to simplify the process of finding, booking, and connecting with mechanics, ensuring a hassle-free experience for our users.</p>
+            
+            <h2>Meet the Team</h2>
+            <div class="team-member">
+                <h3>Gyanendra Sharma</h3>
+                <p>Founder & Full-Stack Developer</p>
+                <p>I handle the backend, frontend, and database development, ensuring the platform's functionality and performance. My passion is building efficient systems that enhance user experience.</p>
+            </div>
+            <div class="team-member">
+                <h3>Vansh Batra</h3>
+                <p>Front-End Developer</p>
+                <p>Vansh brings the designs to life with responsive and interactive UI development, ensuring our platform looks great on every device.</p>
+            </div>
+            <div class="team-member">
+                <h3>Kartik Gupta</h3>
+                <p>Backend Specialist</p>
+                <p>Kartik manages the server-side architecture, focusing on the security and performance of our platform.</p>
+            </div>
+            <div class="team-member">
+                <h3>Ajay Jha</h3>
+                <p>Database Specialist</p>
+                <p>Ajay ensures the integrity and efficiency of our database systems, optimizing data flow and management.</p>
+            </div>
+            <div class="team-member">
+                <h3>Vivek Gautam</h3>
+                <p>UI/UX Designer</p>
+                <p>Vivek designs visually appealing and user-friendly interfaces, making the platform intuitive and engaging for all users.</p>
+            </div>
     
             <h2>Our Vision</h2>
-            <p>Our long-term vision is to become the <strong>leading platform for vehicle maintenance</strong> globally. We envision a future where AutoFix becomes synonymous with <strong>trust, efficiency, and innovation</strong> in the automotive services industry.</p>
-    
-            <h2>Building Lasting Relationships</h2>
-            <p>At AutoFix, we believe in building <strong>strong relationships</strong> with both customers and mechanics. We aim to provide mechanics with opportunities to grow their business while offering customers an unparalleled service experience.</p>
-    
-            <h2>Join Us on This Journey</h2>
-            <p>As we continue to grow and expand, we invite you to be a part of the AutoFix journey. Whether you’re a customer in need of a mechanic, or a mechanic looking to reach more clients, we are here to make your experience simpler and better.</p>
+            <p>At AutoFix, we aim to revolutionize the mechanic booking industry by integrating advanced technologies and user-centric design. We are constantly evolving to add new features, enhance our platform, and provide unparalleled customer service.</p>
         </section>
+        <section class="mission-statement">
+            <h2>Our Mission</h2>
+            <p>At AutoFix, our mission is to revolutionize the way you find and connect with mechanics. We aim to provide an efficient, reliable, and quick service to ensure that vehicle owners can access professional help whenever they need it, wherever they are.</p>
+        </section>
+        <section class="values-commitment">
+            <h2>Our Values</h2>
+            <ul>
+                <li>Reliability: We strive to provide dependable and trustworthy services.</li>
+                <li>Convenience: Ensuring a seamless experience for all users is our top priority.</li>
+                <li>Quality: We only partner with certified mechanics to guarantee the best quality service.</li>
+            </ul>
+        </section>
+        <section class="team">
+            <h2>Meet Our Team</h2>
+            <div class="team-member">
+                <img src="imagesgyanendra.jpg" alt="Gyanendra Sharma">
+                <h3>Gyanendra Sharma</h3>
+                <p>Founder & Full Stack Developer</p>
+                <p>Gyanendra oversees the backend, frontend, and database development, ensuring AutoFix runs seamlessly.</p>
+            </div>
+            <div class="team-member">
+                <img src="imagesvansh.jpg" alt="Vansh Batra">
+                <h3>Vansh Batra</h3>
+                <p>Front-end Developer</p>
+                <p>Vansh is responsible for the visual aspects and user interface design of AutoFix.</p>
+            </div>
+            <div class="team-member">
+                <img src="imageskartik.jpg" alt="Kartik Gupta">
+                <h3>Kartik Gupta</h3>
+                <p>Backend Specialist</p>
+                <p>Kartik ensures the server-side logic and databases work efficiently to provide fast and reliable services.</p>
+            </div>
+            <div class="team-member">
+                <img src="imagesajay.jpg" alt="Ajay Jha">
+                <h3>Ajay Jha</h3>
+                <p>Database Specialist</p>
+                <p>Ajay ensures the integrity and performance of the database systems used in AutoFix.</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="imagesvivek.jpg" alt="Vivek Gautam">
+                <h3>Vivek Gautam</h3>
+                <p>UI/UX Designer</p>
+                <p>Vivek focuses on creating an intuitive user experience and engaging user interfaces for AutoFix.</p>
+            </div>
+            
+            <!-- Add similar profiles for Ajay Jha and Vivek Gautam -->
+        </section>
+        <section class="our-story">
+            <h2>Our Story</h2>
+            <p>AutoFix was born out of a desire to simplify the process of finding and booking mechanics. What started as a small idea quickly grew into a comprehensive solution designed to help vehicle owners connect with trusted mechanics nearby, ensuring convenience and reliability at every step.</p>
+        </section>
+        <section class="testimonials">
+            <h2>What Our Customers Say</h2>
+            <blockquote>
+                <p>"AutoFix saved me when I was stuck on the highway! The mechanic arrived quickly and fixed my car in no time."</p>
+                <footer>— Rahul Sharma</footer>
+            </blockquote>
+            <blockquote>
+                <p>"A fantastic service for busy people. Booking a mechanic has never been easier."</p>
+                <footer>— Priya Mehta</footer>
+            </blockquote>
+        </section>
+        <section class="call-to-action">
+            <h2>Join Us Today!</h2>
+            <p>Are you a skilled mechanic? Become a part of AutoFix and connect with customers easily. Or, if you're looking for professional assistance, book a trusted mechanic now!</p>
+            <button class="cta-button">Become a Mechanic</button>
+            <button class="cta-button">Find a Mechanic</button>
+        </section>
+        
+         
     </main>
     
 
