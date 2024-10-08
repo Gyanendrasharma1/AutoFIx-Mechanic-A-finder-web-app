@@ -68,6 +68,8 @@ async function handleFormSubmission(url, data, type) {
 
         alert(result.message);
         if (type === 'login' || type === 'signup') {
+            closeModal('loginModal'); // Close login modal
+            closeModal('signupModal'); // Close signup modal
             updateLoginButton();
             window.location.href = '/landing-page';
         }
@@ -127,6 +129,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Check user session on page load
     updateLoginButton();
 
+    // Check if user is logged in and only open modal if not
+    if (!localStorage.getItem('isLoggedIn') || localStorage.getItem('isLoggedIn') === 'false') {
+        openModal('loginModal'); // Only open if not logged in
+    }
+
     // Check for restricted navigation clicks
     document.querySelectorAll('.restricted-nav').forEach(function (navLink) {
         navLink.addEventListener('click', function (event) {
@@ -140,8 +147,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-// Show signup modal
-function showSignup() {
-    closeModal('loginModal'); // Ensure the login modal is closed
-    openModal('signupModal'); // Open the signup modal
-}

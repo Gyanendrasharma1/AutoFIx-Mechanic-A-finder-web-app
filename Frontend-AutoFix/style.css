@@ -587,16 +587,19 @@ footer {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
-    backdrop-filter: blur(6px); /* Light blur effect */
-    display: flex;
     justify-content: center;
     align-items: center;
     animation: fadeIn 0.5s ease; /* Fade effect when modal appears */
 }
 
+/* Show the modal when the class 'show' is added */
+.modal.show {
+    display: flex; /* Display modal as flex when shown */
+}
+
 /* Modal Content */
 .modal-content {
-    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    background-color: #ffffff;
     border-radius: 12px;
     width: 90%;
     max-width: 500px;
@@ -606,6 +609,7 @@ footer {
     transform: translateY(-50px); /* Entrance animation */
     opacity: 0; /* Initial opacity for animation */
     animation: slideDown 0.4s ease forwards; /* Slide-down animation */
+    justify-content: center;
 }
 
 /* Modal Content Animation */
@@ -643,23 +647,19 @@ footer {
 .modal-header h2 {
     margin: 0;
     font-size: 24px;
-    color: #007bff; /* Web app theme color */
+    color: #333;
 }
 
 /* Form Styling */
 form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Space between form elements */
-    align-items: center; /* Center the form elements */
-    animation: formAppear 0.5s ease; /* Form animation */
-    width: 100%; /* Full width form */
 }
 
 form label {
     font-size: 16px;
     color: #333;
-    align-self: flex-start;
+    margin-bottom: 5px;
     font-weight: 600;
 }
 
@@ -670,8 +670,8 @@ form input {
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-bottom: 15px;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    box-sizing: border-box;
+    transition: border-color 0.3s;
+    justify-content: center;
 }
 
 form input:focus {
@@ -680,9 +680,7 @@ form input:focus {
     box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
 }
 
-/* Button Styles */
 form button {
-    width: 100%;
     padding: 12px;
     background-color: #007BFF;
     color: white;
@@ -691,11 +689,10 @@ form button {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s;
-    animation: buttonAppear 0.6s ease;
 }
 
 form button:hover {
-    background-color: #0056b3;
+    background-color: #007BFF;
     transform: scale(1.05);
 }
 
@@ -707,7 +704,7 @@ form button:hover {
 }
 
 #form-toggle a {
-    color: #007BFF;
+    color:#007BFF;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s;
@@ -715,10 +712,10 @@ form button:hover {
 
 #form-toggle a:hover {
     text-decoration: underline;
-    color: #0056b3;
+    color: #007BFF;
 }
 
-/* Animations */
+/* Modal Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -750,28 +747,6 @@ form button:hover {
     }
 }
 
-@keyframes formAppear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes buttonAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .modal-content {
@@ -781,9 +756,15 @@ form button:hover {
     .modal-header h2 {
         font-size: 20px;
     }
-    form label, form input {
+    form label,
+    form input {
         font-size: 14px;
     }
+}
+
+/* General styles for the main section */
+main {
+    font-family: 'Arial', sans-serif;
 }
 
 /* Hero banner styles */
