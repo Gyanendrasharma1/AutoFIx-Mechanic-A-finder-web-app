@@ -587,23 +587,25 @@ footer {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    backdrop-filter: blur(6px); /* Light blur effect */
+    display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.3s ease; /* Fade effect */
+    animation: fadeIn 0.5s ease; /* Fade effect when modal appears */
 }
 
 /* Modal Content */
 .modal-content {
-    background-color: #fff;
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    border-radius: 12px;
     width: 90%;
     max-width: 500px;
     padding: 30px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
     position: relative;
-    transform: translateY(-30px); /* Entrance animation */
+    transform: translateY(-50px); /* Entrance animation */
     opacity: 0; /* Initial opacity for animation */
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    animation: slideDown 0.4s ease forwards; /* Slide-down animation */
 }
 
 /* Modal Content Animation */
@@ -615,86 +617,173 @@ footer {
 /* Close Button */
 .close {
     color: #aaa;
-    float: right;
-    font-size: 28px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .close:hover {
-    color: #333;
+    color: #ff4444;
+    transform: scale(1.1); /* Slight scaling effect */
 }
 
 /* Modal Header */
 .modal-header {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #ddd;
     padding-bottom: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: popIn 0.3s ease; /* Pop-in effect for header */
 }
 
 .modal-header h2 {
     margin: 0;
     font-size: 24px;
-    color: #333;
-    text-align: center;
+    color: #007bff; /* Web app theme color */
 }
 
 /* Form Styling */
 form {
     display: flex;
     flex-direction: column;
+    gap: 15px; /* Space between form elements */
+    align-items: center; /* Center the form elements */
+    animation: formAppear 0.5s ease; /* Form animation */
+    width: 100%; /* Full width form */
 }
 
 form label {
     font-size: 16px;
     color: #333;
-    margin-bottom: 5px;
+    align-self: flex-start;
+    font-weight: 600;
 }
 
 form input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-bottom: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
 }
 
+form input:focus {
+    border-color: #007BFF;
+    outline: none;
+    box-shadow: 0 0 8px rgba(40, 167, 69, 0.2);
+}
+
+/* Button Styles */
 form button {
-    padding: 10px;
-    background-color: #28a745;
+    width: 100%;
+    padding: 12px;
+    background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s;
+    animation: buttonAppear 0.6s ease;
 }
 
 form button:hover {
-    background-color: #218838;
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
 /* Form Toggle */
 #form-toggle {
     text-align: center;
-    margin-top: 15px;
+    margin-top: 20px;
     color: #555;
 }
 
 #form-toggle a {
-    color: #28a745;
+    color: #007BFF;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
 #form-toggle a:hover {
     text-decoration: underline;
+    color: #0056b3;
 }
-/* General styles for the main section */
-main {
-    font-family: 'Arial', sans-serif;
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes formAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    .modal-header h2 {
+        font-size: 20px;
+    }
+    form label, form input {
+        font-size: 14px;
+    }
 }
 
 /* Hero banner styles */
