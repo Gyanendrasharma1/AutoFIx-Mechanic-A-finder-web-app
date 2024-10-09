@@ -48,7 +48,116 @@
     margin: 40px 0; /* Add spacing above and below the button */
 }
 
+.hero-content {
+    text-align: center;
+    padding: 60px 20px; /* Add some padding for space */
+    background-color: #007bff; /* Main background color matching your theme */
+    color: white; /* White text for contrast */
+    position: relative;
+    overflow: hidden; /* Ensure children don't overflow */
+}
 
+.hero-content h1.headline {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    animation: fadeInUp 1s ease forwards; /* Fade-in animation */
+}
+
+.hero-content p.subheading {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    animation: fadeInUp 1.2s ease forwards; /* Fade-in animation */
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #131313; /* Bright call-to-action color */
+    color: #007bff; /* Match theme for button text */
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 2.0em;
+    transition: background-color 0.3s, transform 0.3s; /* Transition for hover effects */
+    animation: fadeInUp 1.4s ease forwards; /* Fade-in animation */
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.cta-button:hover {
+    background-color: #ffd700; /* Slightly darker yellow for hover */
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Start slightly lower */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Move to original position */
+    }
+}
+
+/* Features Section Styles */
+.features {
+    background-color: #007bff; /* Light background to match the theme */
+    padding: 40px 20px; /* Padding for top and bottom, smaller for sides */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    text-align: center; /* Center align text */
+    margin: 40px 0; /* Margin for spacing above and below */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-top: 0px;
+}
+
+/* Heading Styles */
+.features h2 {
+    font-size: 2rem; /* Larger font size for the section title */
+    color: #181818; /* Primary theme color */
+    margin-bottom: 20px; /* Space below the heading */
+    animation: fadeIn 1s ease; /* Animation for heading */
+}
+
+/* Feature Item Styles */
+.feature-item {
+    background-color: #ffffff; /* White background for feature items */
+    margin: 20px 0; /* Space between feature items */
+    padding: 20px; /* Padding inside feature items */
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for feature items */
+}
+
+/* Feature Item Hover Effect */
+.feature-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+/* Feature Item Heading Styles */
+.feature-item h3 {
+    font-size: 1.5rem; /* Font size for feature item headings */
+    color: #333; /* Dark color for text */
+    margin-bottom: 10px; /* Space below headings */
+}
+
+/* Feature Item Paragraph Styles */
+.feature-item p {
+    font-size: 1rem; /* Regular font size for descriptions */
+    color: #666; /* Lighter color for readability */
+}
+
+/* Keyframe Animation for Heading */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start transparent */
+        transform: translateY(-20px); /* Start from above */
+    }
+    to {
+        opacity: 1; /* End fully visible */
+        transform: translateY(0); /* End at original position */
+    }
+}
 
 
 </style>
@@ -72,18 +181,32 @@
             </nav>
         </div>
 
+         
     </header>
 
     <main>
-        <section id="hero-banner">
-            <h1>Welcome to AutoFix!</h1>
-            <p>Find the perfect mechanic for your vehicle.</p>
-            <p class="promotion">20% Off Your First Booking!</p>
-            <a href="#location-section" class="cta-button">Book Now</a>
-        </section>
-    
-  
+         <div class="hero-content">
+            <h1 class="headline">Find Trusted Mechanics Near You in Minutes!</h1>
+            <p class="subheading">Connecting vehicle owners with local mechanics for quick and reliable service.</p>
+            <a href="findmechanic.html" class="cta-button">Book a Mechanic Now</a>
+        </div>
 
+        <section class="features">
+            <h2>Why Choose Us?</h2>
+            <div class="feature-item">
+                <h3>Fast Booking</h3>
+                <p>Book a mechanic in just a few clicks, with instant confirmations.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Trusted Mechanics</h3>
+                <p>All mechanics are verified and highly rated by our users.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Customer Support</h3>
+                <p>We're here to help you with any questions or issues you may have.</p>
+            </div>
+        </section>
+        
     </main>
     
 
