@@ -1,9 +1,12 @@
+// server.js
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const bcrypt = require('bcryptjs');
-const session = require('express-session'); // Add express-session
+const session = require('express-session');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 const app = express();
@@ -12,6 +15,7 @@ const port = 3000;
 // Middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Middleware for session management
 app.use(session({
@@ -138,6 +142,49 @@ app.get('/api/logout', (req, res) => {
         }
         res.redirect('/'); // Redirect to homepage after logout
     });
+});
+
+// Live Chat Endpoint
+app.post('/api/live-chat', (req, res) => {
+    const { userId } = req.body;
+    console.log(`Starting live chat for user: ${userId}`);
+    res.json({ message: "Live chat started!" });
+});
+
+// Phone Support Endpoint
+app.post('/api/call-support', (req, res) => {
+    const { phoneNumber } = req.body;
+    console.log(`Initiating call to support at: ${phoneNumber}`);
+    res.json({ message: `Calling ${phoneNumber}...` });
+});
+
+// Email Support Endpoint
+app.post('/api/email-support', async (req, res) => {
+    const { userEmail, message } = req.body;
+
+    // Create reusable transporter object using SMTP transport
+    const transporter = nodemailer.createTransport({
+        service: 'gmail', // Use your email service
+        auth: {
+            user: 'your-email@gmail.com', // Your email
+            pass: 'your-email-password', // Your email password or app password
+        },
+    });
+
+    const mailOptions = {
+        from: userEmail,
+        to: 'support@autofix.com', // Support email address
+        subject: 'Support Request',
+        text: message,
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        res.json({ message: "Email sent successfully!" });
+    } catch (error) {
+        console.error("Error sending email:", error);
+        res.status(500).json({ message: "Failed to send email." });
+    }
 });
 
 // Error handling middleware

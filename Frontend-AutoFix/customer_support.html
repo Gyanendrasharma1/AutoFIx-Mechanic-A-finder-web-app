@@ -133,6 +133,87 @@
         font-size: 0.9em;
     }
 }
+/* Support Icons Section Styling */
+.support-icons-section {
+    background-color: #f4f8fc;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.support-icons-section h3 {
+    font-size: 2.2em;
+    color: #007BFF;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 0px;
+}
+
+.support-icons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.support-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s;
+}
+
+.support-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.support-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+}
+
+.support-item h4 {
+    font-size: 1.5em;
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.support-item p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.support-item button {
+    background-color: #007BFF;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.support-item button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .support-icons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
 
 
 
@@ -228,6 +309,30 @@
     
             <!-- Additional sections can be added similarly as needed -->
         </div>
+        <div class="support-icons-section">
+            <h3>Our Support Channels</h3>
+            <div class="support-icons">
+                <div class="support-item">
+                    <img src="live-chat-icon.png" alt="Live Chat Icon" class="support-icon">
+                    <h4>Live Chat</h4>
+                    <p>Get instant support through our live chat feature.</p>
+                    <button onclick="startLiveChat()">Start Live Chat</button>
+                </div>
+                <div class="support-item">
+                    <img src="phone-support-icon.png" alt="Phone Support Icon" class="support-icon">
+                    <h4>Phone Support</h4>
+                    <p>Call us directly for voice support and quick assistance.</p>
+                    <button onclick="callSupport()">Call Us</button>
+                </div>
+                <div class="support-item">
+                    <img src="email-support-icon.png" alt="Email Support Icon" class="support-icon">
+                    <h4>Email Support</h4>
+                    <p>Send us an email for detailed assistance within 24 hours.</p>
+                    <button onclick="sendEmail()">Email Us</button>
+                </div>
+            </div>
+        </div>
+        
     </main>
     
     
@@ -500,6 +605,22 @@
             openModal('loginModal');
         }
     });
+
+    function startLiveChat() {
+    // Code to start the live chat
+    alert("Starting live chat...");
+}
+
+function callSupport() {
+    // Code to initiate a call
+    alert("Calling support...");
+}
+
+function sendEmail() {
+    // Code to open the user's email client
+    window.location.href = "mailto:support@autofix.com";
+}
+
 </script>
 
 
