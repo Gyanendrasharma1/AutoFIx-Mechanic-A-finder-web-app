@@ -16,57 +16,130 @@ body {
     background-color: #f4f4f9;
     color: #333;
 }
-main {
-    background: linear-gradient(to bottom right, #ffffff, #f0f4f8);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin: 2rem auto;
-    max-width: 1200px;
+/* Enhanced Customer Support Section Styling */
+.customer-support-section {
+    background-color: #f4f8fc;
+    padding: 50px;
+    margin: 0 auto; /* Removed top margin */
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    max-width: 90%;
+    animation: fadeInZoom 1s ease-in-out;
+    overflow: hidden;
 }
 
-main h2 {
-    font-size: 2rem;
-    color: #4CAF50; /* Main heading color */
-    border-bottom: 2px solid #4CAF50; /* Underline effect */
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
 
-main h3 {
-    font-size: 1.5rem;
+.customer-support-section .content {
+    font-family: 'Arial', sans-serif;
     color: #333;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    line-height: 1.8;
 }
 
-main p {
-    line-height: 1.6;
-    margin-bottom: 1rem;
+.customer-support-section h2 {
+    font-size: 2.5em;
+    color: #007BFF;
+    margin: 0 auto; /* Center horizontally */
+    border-bottom: 3px solid #007BFF;
+    padding-bottom: 8px;
+    text-align: center; /* Align the text to center */
+    animation: slideInRotate 1.2s ease-out;
 }
 
-main ul {
+.customer-support-section h3 {
+    font-size: 1.8em;
+    color: #0056b3;
+    margin-top: 25px;
+    animation: fadeInUp 0.9s ease-out;
+}
+
+.customer-support-section p, .customer-support-section ul {
+    margin-top: 15px;
+    animation: fadeInEase 0.7s ease-in;
+}
+
+.customer-support-section ul {
     list-style-type: disc;
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
-main li {
-    margin-bottom: 0.5rem;
+.customer-support-section li {
+    margin: 12px 0;
+    font-size: 1em;
 }
 
-main strong {
-    color: #4CAF50; /* Emphasize important text */
+.customer-support-section li strong {
+    color: #007BFF;
 }
 
-address {
-    font-style: normal;
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border-radius: 4px;
-    margin-top: 1rem;
-    border-left: 4px solid #4CAF50; /* Highlight the address */
+/* New Animation Definitions */
+@keyframes fadeInEase {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Animation for Headings */
+.customer-support-section h2:hover, .customer-support-section h3:hover {
+    color: #0056b3;
+    cursor: pointer;
+    animation: bounceHover 0.4s;
+}
+
+@keyframes bounceHover {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* Additional Styling for Responsiveness */
+@media (max-width: 768px) {
+    .customer-support-section {
+        padding: 30px;
+        margin: 15px;
+    }
+
+    .customer-support-section h2 {
+        font-size: 2em;
+    }
+
+    .customer-support-section h3 {
+        font-size: 1.4em;
+    }
+
+    .customer-support-section li {
+        font-size: 0.9em;
+    }
+}
 
 
 
@@ -98,62 +171,70 @@ address {
         </div>
     </header>
 
-    <main>
-        <section id="customer-support">
+    <main class="customer-support-section">
+        <div class="content">
             <h2>Customer Support</h2>
-            <p>
-                At <strong>AutoFix</strong>, we understand that keeping your vehicle in top shape requires more than just skilled mechanics — it requires a commitment to excellent customer service. That’s why we’ve made it our mission to provide an accessible, reliable, and efficient support system for every customer. Whether you’re using our platform for the first time or are a long-term user, our customer support team is here to ensure your experience is seamless and stress-free. Below, we outline the different ways you can reach out to us and get the help you need.
-            </p>
-            <h3>1. Help Center: Your Go-To Resource</h3>
-            <p>
-                Our <strong>Help Center</strong> is your first stop for quick solutions to common questions and issues. We have built a comprehensive library of articles and guides that cover everything from booking a mechanic to managing your appointments. You can find answers to frequently asked questions (FAQs) on a wide range of topics including:
-            </p>
+            <p>At AutoFix, we prioritize your convenience and satisfaction. Our dedicated customer support team is here to assist you every step of the way, ensuring that your experience with our services is seamless and stress-free. Whether you're booking a mechanic, facing an issue, or have a query about our services, we’re here to provide prompt and effective assistance. Here’s how our customer support works:</p>
+            
+            <h3>1. Comprehensive Assistance</h3>
+            <p>Our customer support team is equipped to help you with various aspects of the AutoFix experience, including:</p>
             <ul>
-                <li><strong>Booking Services</strong>: Step-by-step instructions on how to book a mechanic for any type of vehicle.</li>
-                <li><strong>Account Management</strong>: Learn how to create, update, or delete your AutoFix account.</li>
-                <li><strong>Payment Options</strong>: Details on available payment methods, pricing, and how to apply discounts or coupons.</li>
-                <li><strong>Appointment Rescheduling</strong>: Find out how to reschedule or cancel your appointments with ease.</li>
-                <li><strong>Service Plans</strong>: Information about our range of service plans, including how to subscribe and what’s covered.</li>
+                <li><strong>Booking Assistance:</strong> Need help finding a mechanic or scheduling an appointment? Our support agents will guide you through the process, ensuring that you find the right professional for your vehicle.</li>
+                <li><strong>Troubleshooting Issues:</strong> Facing any technical difficulties while using our web app? Whether it’s related to login issues, payment processing, or accessing features, we’re here to resolve it quickly.</li>
+                <li><strong>Service Inquiries:</strong> Have a question about our services, pricing, or available mechanics? Our team provides detailed information to ensure you make informed decisions.</li>
+                <li><strong>Feedback & Complaints:</strong> We value your input and strive to improve continuously. If you have any feedback or complaints about a service or the platform, our support team is ready to listen and take action.</li>
             </ul>
-            <p>Our Help Center is available 24/7, so you can access important information any time you need it, from anywhere.</p>
-            <h3>2. Contact Us: Direct Assistance When You Need It</h3>
-            <p>
-                If you prefer direct assistance, our customer support team is here to help. We offer several ways to get in touch, ensuring that you receive personalized and timely support.
-            </p>
+    
+            <h3>2. Multi-Channel Support</h3>
+            <p>We understand that different customers prefer different ways of communicating. That’s why AutoFix offers multiple channels for you to reach us:</p>
             <ul>
-                <li><strong>Email Support</strong>: Send us an email at <strong>support.autofix@gmail.com</strong> with your inquiry, and one of our team members will respond promptly. We aim to resolve most email inquiries within 24 hours.</li>
-                <li><strong>Phone Support</strong>: For immediate help, give us a call during our business hours at <strong>(555) 987-6543</strong>.</li>
+                <li><strong>Live Chat:</strong> Our in-app live chat feature provides instant support. Connect with a support agent directly from the web app, and get real-time assistance for all your queries.</li>
+                <li><strong>Phone Support:</strong> Prefer talking to someone directly? Our customer support hotline is available during business hours for voice support. Our agents are trained to assist you with any questions or issues you might encounter.</li>
+                <li><strong>Email Support:</strong> For non-urgent matters or detailed assistance requests, you can email us at support@autofix.com. We respond to all emails within 24 hours, ensuring you receive the support you need.</li>
+                <li><strong>Help Center:</strong> Explore our comprehensive help center on the AutoFix web app, filled with FAQs, step-by-step guides, and troubleshooting tips to help you navigate our services independently.</li>
             </ul>
-            <h3>3. Live Chat: Real-Time Support</h3>
-            <p>For fast, real-time support, use our <strong>Live Chat</strong> feature. This service allows you to connect with a customer service representative instantly for help with a variety of issues.</p>
+            <h3>3. Personalized Support Experience</h3>
+            <p>At AutoFix, we believe in providing personalized support that caters to your specific needs:</p>
             <ul>
-                <li>Troubleshooting booking problems</li>
-                <li>Asking questions about services and mechanic availability</li>
-                <li>Getting details about ongoing promotions or service packages</li>
-                <li>Resolving payment or refund concerns</li>
+                <li><strong>Account-Specific Assistance:</strong> When you contact us, our agents can access your service history, vehicle details, and previous inquiries to provide customized solutions, saving you time and ensuring that your issues are addressed effectively.</li>
+                <li><strong>Follow-Up Services:</strong> For more complex issues or service-related complaints, our support agents follow up with you to confirm the resolution and gather feedback on your experience. We aim to resolve all concerns to your satisfaction.</li>
             </ul>
-            <h3>4. Feedback: We Value Your Opinions</h3>
-            <p>We believe in continuous improvement. Your feedback is instrumental in helping us enhance the quality of our services and platform.</p>
+
+            <h3>4. Availability & Response Time</h3>
+            <p>We understand that vehicle emergencies can occur anytime, so we ensure our support is available when you need it:</p>
             <ul>
-                <li><strong>Feedback Form</strong>: Submit feedback, suggestions, or concerns via our form in the Customer Support section.</li>
-                <li><strong>Service Ratings</strong>: Rate your mechanic and leave comments after each service to help improve our offerings.</li>
+                <li><strong>24/7 Availability:</strong> Our live chat and phone support are available 24/7, ensuring that you can reach out to us at any time, whether it’s day or night.</li>
+                <li><strong>Quick Response Times:</strong> We pride ourselves on our fast response times. Our live chat typically connects you with an agent in under a minute, while phone support aims for immediate connection. Email support responds within 24 hours for non-urgent queries.</li>
             </ul>
-            <h3>5. Terms & Conditions: Transparency and Trust</h3>
-            <p>We encourage you to familiarize yourself with our <strong>Terms & Conditions</strong>, which outline the scope of services we offer, your rights as a customer, and other important details.</p>
-            <h3>6. Privacy Policy: Your Data, Our Priority</h3>
-            <p>Our <strong>Privacy Policy</strong> explains how we collect, use, and protect your personal information. We take your privacy seriously and ensure that your data is stored securely.</p>
-            <h3>7. Refund & Cancellation Policies: Hassle-Free Resolutions</h3>
-            <p>If you need to cancel or reschedule a booking, our <strong>Refund & Cancellation Policy</strong> outlines the process. We aim to make refunds and cancellations as straightforward as possible.</p>
-            <h3>8. Our Address: Visit Us</h3>
-            <p>You can find us at:</p>
-            <address>
-                <strong>AutoFix Customer Support Center</strong><br>
-                Dada nagar<br>
-                kanpur , uttar pradesh<br>
-                India
-            </address>
-        </section>
+
+            <h3>5. Quality Assurance & Continuous Improvement</h3>
+            <p>To maintain a high standard of customer service, we have implemented quality assurance measures:</p>
+            <ul>
+                <li><strong>Agent Training:</strong> Our customer support agents undergo rigorous training to handle all kinds of inquiries, ensuring they are knowledgeable and capable of assisting you efficiently.</li>
+                <li><strong>Feedback Mechanism:</strong> After each support interaction, you have the opportunity to rate our service and provide feedback. We use this information to continuously improve our support quality and to reward agents who go above and beyond.</li>
+                <li><strong>Support Monitoring:</strong> Our team monitors support interactions to maintain high standards and ensure that our agents provide the best possible service.</li>
+            </ul>
+
+            <h3>6. Customer Support Policies</h3>
+            <p>We are committed to transparency and fair treatment of our customers. Our customer support policies include:</p>
+            <ul>
+                <li><strong>Data Privacy:</strong> Your data is secure with us. We adhere to strict privacy standards to protect your personal and vehicle information.</li>
+                <li><strong>Fair Resolution:</strong> If you experience a problem or dissatisfaction with our service, our team ensures a fair resolution. We may offer service credits, refunds, or other compensations based on the issue.</li>
+                <li><strong>Proactive Updates:</strong> If there's any maintenance or downtime in our services, our customer support team proactively informs users via email and notifications, keeping you updated and providing alternative solutions when necessary.</li>
+            </ul>
+
+            <h3>7. Self-Service Options</h3>
+            <p>In addition to direct support, we offer self-service options to save you time:</p>
+            <ul>
+                <li><strong>Knowledge Base:</strong> Our knowledge base contains articles on how to use different features of the AutoFix app, including how to book mechanics, manage your account, and resolve common issues.</li>
+                <li><strong>Tutorial Videos:</strong> We offer video tutorials demonstrating how to use the platform, access specific features, and troubleshoot issues, making it easier for you to get help independently.</li>
+                <li><strong>Automated Support Chatbot:</strong> Our intelligent chatbot can provide answers to frequently asked questions, guide you through basic processes, and escalate complex issues to a live agent when needed.</li>
+            </ul>
+    
+            <!-- Additional sections can be added similarly as needed -->
+        </div>
     </main>
+    
     
    
 
