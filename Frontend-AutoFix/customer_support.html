@@ -214,7 +214,264 @@
         align-items: center;
     }
 }
+/* FAQ Section Styling */
+.faq-section {
+    width: 1160px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f8fb;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
+.faq-section h2 {
+    font-size: 2em;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Accordion Styling */
+.accordion {
+    border-top: 1px solid #007bff;
+}
+
+.accordion-item {
+    margin: 10px 0;
+    border-bottom: 1px solid #007bff;
+}
+
+.accordion-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease;
+    text-align: left;
+    color: #007bff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-button:hover {
+    background-color: #e0f0ff;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    background-color: #ffffff;
+    padding: 0 15px;
+    color: #333;
+}
+
+.accordion-content p {
+    padding: 15px 0;
+    font-size: 0.95em;
+}
+
+/* Accordion Animation */
+.accordion-button.active + .accordion-content {
+    max-height: 150px; /* Adjust as needed */
+    padding: 15px;
+    border-top: 1px solid #007bff;
+}
+
+/* Testimonial Section Styling */
+.testimonial-section {
+    background-color: #f0f8ff;
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.testimonial-heading {
+    font-size: 2.5rem;
+    color: #0a74da;
+    margin-bottom: 30px;
+    font-family: 'Arial', sans-serif;
+}
+
+.testimonial-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.testimonial-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    transition: transform 0.3s;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1.5s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    color: #333333;
+    font-style: italic;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.testimonial-author {
+    font-size: 1rem;
+    color: #0a74da;
+    font-weight: bold;
+}
+
+/* Animation Effects */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+body {
+    background-color: #f0f4f8;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-form-section {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border-left: 6px solid #007bff; /* Accent line */
+    position: relative;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.contact-form-heading {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5rem; /* Increased font size */
+    font-weight: bold; /* Bold font */
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased spacing */
+}
+
+/* Label styles */
+.form-group label {
+    font-size: 1.1rem; /* Slightly larger label */
+    color: #555;
+    margin-bottom: 8px;
+    display: block; /* Ensures label takes up full width */
+}
+
+/* Uniform styles for all input boxes */
+.form-group input,
+.form-group textarea {
+    padding: 15px; /* Maintain padding */
+    border: 2px solid #ddd; /* Slightly thicker border */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    font-size: 1rem; /* Consistent font size */
+    background-color: #f9f9f9; /* Light background for inputs */
+    color: #333; /* Text color */
+    width: 100%; /* Set width to 100% of the parent container */
+    max-width: 480px; /* Maximum width for uniformity */
+    margin: 15px auto; /* Center and add margin to all inputs */
+}
+
+/* Focus State Styles */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #007bff; /* Accent color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Soft glow effect */
+    outline: none; /* Remove default outline */
+}
+
+/* Submit button styles */
+.submit-button {
+    padding: 15px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem; /* Increased font size */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative; /* For the shadow effect */
+    overflow: hidden;
+    z-index: 1; /* Ensure the button is above the shadow */
+    margin-top: 20px; /* Add margin above the button */
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3); /* Shadow effect */
+}
+
+/* Placeholder styles */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aaa; /* Lighter color for placeholders */
+    opacity: 1; /* Make sure the opacity is set to 1 */
+}
+
+/* Placeholder animation */
+.form-group input:focus::placeholder,
+.form-group textarea:focus::placeholder {
+    color: #007bff; /* Change color on focus */
+    transition: color 0.3s ease; /* Smooth transition for placeholder */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 
@@ -332,6 +589,211 @@
                 </div>
             </div>
         </div>
+        <div class="faq-section">
+            <h2>Customer Support FAQs</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-button">What is AutoFix?</button>
+                    <div class="accordion-content">
+                        <p>AutoFix is a web app that helps you find mechanics nearby for your vehicle repair and maintenance needs.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">How can I book a mechanic?</button>
+                    <div class="accordion-content">
+                        <p>To book a mechanic, enter your location, choose your vehicle type, and select a mechanic from the available options.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">What payment options are available?</button>
+                    <div class="accordion-content">
+                        <p>You can pay using online methods like credit/debit cards, UPI, or cash on service.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">How do I register as a mechanic on AutoFix?</button>
+                    <div class="accordion-content">
+                        <p>To register as a mechanic, visit the ‘Become a Mechanic’ page, fill in your details, and submit the form. Our team will review and approve your application.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">What types of vehicles can I book a mechanic for?</button>
+                    <div class="accordion-content">
+                        <p>AutoFix provides services for a variety of vehicles including cars, bikes, scooters, and other two-wheelers.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How can I track my booking status?</button>
+                    <div class="accordion-content">
+                        <p>You can track your booking status through the ‘My Bookings’ section after logging into your account.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">What payment methods are accepted on AutoFix?</button>
+                    <div class="accordion-content">
+                        <p>We accept all major payment methods including credit/debit cards, UPI, net banking, and digital wallets.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How can I cancel a booking?</button>
+                    <div class="accordion-content">
+                        <p>To cancel a booking, go to the ‘My Bookings’ section, select the booking you want to cancel, and click on the ‘Cancel’ button.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">Is there a warranty on the services provided?</button>
+                    <div class="accordion-content">
+                        <p>Yes, all services come with a warranty period. The details of the warranty will be provided by the mechanic before the service begins.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How can I update my profile information?</button>
+                    <div class="accordion-content">
+                        <p>Go to the ‘My Profile’ section to update your personal details, contact information, and other preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">What should I do if I forget my password?</button>
+                    <div class="accordion-content">
+                        <p>Click on the ‘Forgot Password’ link on the login page. Follow the instructions to reset your password via email.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">Can I reschedule my mechanic appointment?</button>
+                    <div class="accordion-content">
+                        <p>Yes, you can reschedule your appointment from the ‘My Bookings’ section. Select the appointment and choose a new time slot.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How does AutoFix ensure the quality of mechanics listed on the platform?</button>
+                    <div class="accordion-content">
+                        <p>We conduct thorough background checks and quality assessments for all mechanics before they are approved on our platform.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">Is there a fee for signing up as a mechanic?</button>
+                    <div class="accordion-content">
+                        <p>No, signing up as a mechanic on AutoFix is free. Mechanics only pay a small service fee on successful bookings.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How can I contact customer support directly?</button>
+                    <div class="accordion-content">
+                        <p>You can contact customer support through the live chat feature, call our support number, or email us at support@autofix.com.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">Can I leave a review for a mechanic after service?</button>
+                    <div class="accordion-content">
+                        <p>Yes, after the service is completed, you can rate and review the mechanic through the ‘My Bookings’ section.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">What happens if the mechanic is delayed?</button>
+                    <div class="accordion-content">
+                        <p>If the mechanic is delayed, you will be notified through the app, and you can choose to reschedule or cancel the booking without any charges.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How can I refer a friend to AutoFix?</button>
+                    <div class="accordion-content">
+                        <p>You can refer a friend through the ‘Refer a Friend’ section in your account and earn rewards when they book a service.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">What safety measures are mechanics required to follow?</button>
+                    <div class="accordion-content">
+                        <p>All mechanics are required to follow safety protocols including wearing protective gear, following health guidelines, and ensuring vehicle safety during service.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">Can I book a mechanic for multiple vehicles at the same time?</button>
+                    <div class="accordion-content">
+                        <p>Yes, you can book mechanics for multiple vehicles by selecting them during the booking process.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How do I know if a mechanic is available in my area?</button>
+                    <div class="accordion-content">
+                        <p>Enter your location in the app, and we will show you a list of available mechanics nearby.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">What happens if I encounter an issue during the service?</button>
+                    <div class="accordion-content">
+                        <p>If you encounter any issue, you can reach out to our support team immediately through the live chat or call option.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <button class="accordion-button">How can I report a mechanic or service issue?</button>
+                    <div class="accordion-content">
+                        <p>You can report an issue through the ‘Report an Issue’ button in the ‘My Bookings’ section. Our team will follow up and resolve the issue promptly.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="testimonial-section">
+            <h2 class="testimonial-heading">What Our Customers Say</h2>
+            <div class="testimonial-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"AutoFix saved my day when my car broke down in the middle of nowhere. The mechanic arrived quickly and fixed the issue professionally!"</p>
+                    <h4 class="testimonial-author">- Rajiv Sharma</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Excellent service! Booking a mechanic was so easy, and the support team was super helpful when I had a question."</p>
+                    <h4 class="testimonial-author">- Priya Malhotra</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I was able to find a reliable mechanic within minutes using AutoFix. Highly recommend their service!"</p>
+                    <h4 class="testimonial-author">- Ankit Verma</h4>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form-section">
+            <h2 class="contact-form-heading">Contact Us</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Enter subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Type your message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+        
         
     </main>
     
@@ -620,6 +1082,56 @@ function sendEmail() {
     // Code to open the user's email client
     window.location.href = "mailto:support@autofix.com";
 }
+document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        button.classList.toggle('active');
+
+        if (button.classList.contains('active')) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+        } else {
+            content.style.maxHeight = 0;
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelector('.contact-form');
+    
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = {
+            name: contactForm.name.value,
+            email: contactForm.email.value,
+            subject: contactForm.subject.value,
+            message: contactForm.message.value,
+        };
+
+        try {
+            const response = await fetch('/api/feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                const result = await response.json();
+                alert(result.message); // Show success message
+                contactForm.reset(); // Clear the form
+            } else {
+                alert('Error: Could not send feedback. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An unexpected error occurred. Please try again later.');
+        }
+    });
+});
+
+
 
 </script>
 

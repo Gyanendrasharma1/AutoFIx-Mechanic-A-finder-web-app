@@ -187,6 +187,21 @@ app.post('/api/email-support', async (req, res) => {
     }
 });
 
+// API endpoint to handle feedback submission
+app.post('/api/feedback', (req, res) => {
+    const { name, email, subject, message } = req.body;
+
+    // Insert feedback into the database
+    const query = 'INSERT INTO feedback (name, email, subject, message) VALUES (?, ?, ?, ?)';
+    db.query(query, [name, email, subject, message], (err, result) => {
+        if (err) {
+            console.error('Error inserting feedback:', err);
+            return res.status(500).json({ message: 'Failed to save feedback. Please try again later.' });
+        }
+        res.status(200).json({ message: 'Thank you for your feedback!' });
+    });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
