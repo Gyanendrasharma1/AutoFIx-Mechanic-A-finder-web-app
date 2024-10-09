@@ -291,6 +291,7 @@
     border-radius: 10px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     animation: fadeIn 1.5s ease-in-out;
+    margin-top: 50px;
 }
 
 .testimonial-heading {
@@ -367,7 +368,7 @@ body {
 }
 
 .contact-form-section {
-    max-width: 600px;
+    max-width: 650px;
     margin: 50px auto;
     padding: 40px;
     background: #ffffff;
@@ -376,6 +377,9 @@ body {
     border-left: 6px solid #007bff; /* Accent line */
     position: relative;
     animation: fadeIn 1s ease-in-out;
+    
+  
+   
 }
 
 .contact-form-heading {
@@ -473,7 +477,234 @@ body {
     }
 }
 
+.support-team-section {
+    max-width: 1200px; /* Set max width for the section */
+    margin: 50px auto; /* Center the section */
+    padding: 20px; /* Add padding around the section */
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+    margin-right: 5px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
 
+
+.support-team-heading {
+    text-align: center; /* Center the heading */
+    color: #333; /* Heading color */
+    margin-bottom: 30px; /* Spacing below the heading */
+    font-size: 2.5rem; /* Heading font size */
+    font-weight: bold; /* Bold font */
+}
+
+.team-member {
+    display: flex; /* Flex layout for member info */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 20px; /* Spacing between members */
+    padding: 10px; /* Add some padding inside each member box */
+    border-bottom: 1px solid #eee; /* Add a subtle border below each member box */
+}
+
+.team-member:last-child {
+    border-bottom: none; /* Remove the border for the last member */
+}
+
+.team-member-image {
+    width: 80px; /* Set a uniform size for member images */
+    height: 80px; /* Ensure images are square */
+    border-radius: 50%; /* Circular images */
+    margin-right: 20px; /* Spacing to the right of the image */
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+.member-info {
+    flex: 1; /* Allow member info to take remaining space */
+}
+
+.member-name {
+    font-size: 1.5rem; /* Font size for member names */
+    color: #007bff; /* Accent color for names */
+    margin: 0; /* Remove default margin */
+}
+
+.member-role {
+    font-size: 1.2rem; /* Font size for roles */
+    color: #555; /* Slightly lighter color for roles */
+    margin: 5px 0; /* Margin above and below the role */
+}
+
+.member-bio {
+    color: #333; /* Bio text color */
+    line-height: 1.5; /* Improved line spacing */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Support Guide Styles */
+.support-guide {
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.support-guide h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007BFF; /* Blue color */
+}
+
+.guide-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between steps */
+}
+
+.guide-step {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.guide-step:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.support-button {
+    background-color: #007BFF; /* Blue color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+.support-button:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: scale(1.05);
+}
+
+/* Modal Styles */
+.support-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.support-modal-content {
+    background-color: white; /* White background */
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Max width of modal */
+    animation: fadeIn 0.3s; /* Modal fade-in effect */
+}
+
+/* Close button styles */
+.support-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.support-close:hover,
+.support-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Fade-in animation for modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* User Guides Styles */
+.user-guides {
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.user-guides h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007BFF; /* Blue color */
+}
+
+.user-guides p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.guides-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between guide items */
+}
+
+.guide-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.guide-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #007BFF; /* Blue color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+.download-button:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: scale(1.05);
+}
 
 
   </style>
@@ -770,6 +1001,55 @@ body {
                 </div>
             </div>
         </div>
+
+        <section class="support-team-section">
+            <h2 class="support-team-heading">Meet Our Support Team</h2>
+        
+            <div class="team-member">
+                <img src="imagesgyanendra.jpg" alt="Gyanendra Sharma" class="team-member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Gyanendra Sharma</h3>
+                    <p class="member-role">Founder & Full Stack Developer</p>
+                    <p class="member-bio">Gyanendra oversees the backend, frontend, and database development, ensuring AutoFix runs seamlessly.</p>
+                </div>
+            </div>
+        
+            <div class="team-member">
+                <img src="imagesvansh.jpg" alt="Vansh Batra" class="team-member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Vansh Batra</h3>
+                    <p class="member-role">Front-end Developer</p>
+                    <p class="member-bio">Vansh is responsible for the visual aspects and user interface design of AutoFix.</p>
+                </div>
+            </div>
+        
+            <div class="team-member">
+                <img src="imageskartik.jpg" alt="Kartik Gupta" class="team-member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Kartik Gupta</h3>
+                    <p class="member-role">Backend Specialist</p>
+                    <p class="member-bio">Kartik ensures the server-side logic and databases work efficiently to provide fast and reliable services.</p>
+                </div>
+            </div>
+        
+            <div class="team-member">
+                <img src="imagesajay.jpg" alt="Ajay Jha" class="team-member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Ajay Jha</h3>
+                    <p class="member-role">Database Specialist</p>
+                    <p class="member-bio">Ajay ensures the integrity and performance of the database systems used in AutoFix.</p>
+                </div>
+            </div>
+        
+            <div class="team-member">
+                <img src="imagesvivek.jpg" alt="Vivek Gautam" class="team-member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Vivek Gautam</h3>
+                    <p class="member-role">UI/UX Designer</p>
+                    <p class="member-bio">Vivek focuses on creating an intuitive user experience and engaging user interfaces for AutoFix.</p>
+                </div>
+            </div>
+        </section>
         
         <div class="contact-form-section">
             <h2 class="contact-form-heading">Contact Us</h2>
@@ -794,6 +1074,92 @@ body {
             </form>
         </div>
         
+        <section class="support-guide">
+            <h2>Support Guide</h2>
+            <div class="guide-steps">
+                <div class="guide-step">
+                    <h3>Technical Issues</h3>
+                    <p>If you encounter technical issues, follow these steps to troubleshoot or contact our support.</p>
+                    <button class="support-button" onclick="showSupportDetails('technical')">Learn More</button>
+                </div>
+                <div class="guide-step">
+                    <h3>Booking Assistance</h3>
+                    <p>Need help with booking a mechanic? Click to view our step-by-step guide and support options.</p>
+                    <button class="support-button" onclick="showSupportDetails('booking')">Learn More</button>
+                </div>
+                <div class="guide-step">
+                    <h3>Account Support</h3>
+                    <p>For account-related support, such as login issues or profile updates, click here.</p>
+                    <button class="support-button" onclick="showSupportDetails('account')">Learn More</button>
+                </div>
+            </div>
+        
+            <!-- Modals for Detailed Info -->
+            <div id="support-modal-technical" class="support-modal">
+                <div class="support-modal-content">
+                    <span class="support-close" onclick="closeSupportModal('technical')">&times;</span>
+                    <h3>Technical Issues</h3>
+                    <p>Here are the steps you can follow for resolving technical issues:</p>
+                    <ul>
+                        <li>Check your internet connection.</li>
+                        <li>Ensure your browser is updated.</li>
+                        <li>Contact support if the issue persists.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="support-modal-booking" class="support-modal">
+                <div class="support-modal-content">
+                    <span class="support-close" onclick="closeSupportModal('booking')">&times;</span>
+                    <h3>Booking Assistance</h3>
+                    <p>Steps for booking a mechanic:</p>
+                    <ul>
+                        <li>Enter your location and select your vehicle type.</li>
+                        <li>Choose a mechanic and view pricing options.</li>
+                        <li>Contact our support if you need further assistance.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="support-modal-account" class="support-modal">
+                <div class="support-modal-content">
+                    <span class="support-close" onclick="closeSupportModal('account')">&times;</span>
+                    <h3>Account Support</h3>
+                    <p>For account-related help:</p>
+                    <ul>
+                        <li>Reset your password if you cannot log in.</li>
+                        <li>Update your profile and contact information.</li>
+                        <li>Contact support for further help with your account.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="user-guides">
+            <h2>Downloadable User Guides</h2>
+            <p>Access our user guides and manuals below to help you navigate our services:</p>
+            <div class="guides-list">
+                <div class="guide-item">
+                    <h3>How to Book a Mechanic</h3>
+                    <p>A detailed guide on booking a mechanic through our platform.</p>
+                    <a href="booking-guide.pdf" class="download-button" download>Download Guide</a>
+                </div>
+                <div class="guide-item">
+                    <h3>Managing Your Account</h3>
+                    <p>Instructions on how to manage your account, including updates and settings.</p>
+                    <a href="guide-account-management.pdf" class="download-button" download>Download Guide</a>
+                </div>
+                <div class="guide-item">
+                    <h3>Troubleshooting Common Issues</h3>
+                    <p>Find solutions to common issues encountered on our platform.</p>
+                    <a href="guide-troubleshooting.pdf" class="download-button" download>Download Guide</a>
+                </div>
+            </div>
+        </section>
+        
+        
+
+
+
+
         
     </main>
     
@@ -1131,6 +1497,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Show the modal
+function showSupportDetails(type) {
+    const modal = document.getElementById(`support-modal-${type}`);
+    modal.style.display = "flex"; // Use flex to center the modal
+}
+
+// Close the modal
+function closeSupportModal(type) {
+    const modal = document.getElementById(`support-modal-${type}`);
+    modal.style.display = "none";
+}
+
+// Close modal when clicking outside of the modal content
+window.onclick = function(event) {
+    const modals = document.querySelectorAll('.support-modal');
+    modals.forEach(modal => {
+        if (event.target === modal) {
+            closeSupportModal(modal.id.split('-')[2]); // Extract type from modal ID
+        }
+    });
+};
+
+// Optional: Track downloads (this is just a placeholder, add your tracking logic here if needed)
+const downloadButtons = document.querySelectorAll('.download-button');
+
+downloadButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        console.log(`Downloaded: ${this.previousElementSibling.innerText}`);
+        // You can add your tracking code here
+    });
+});
 
 
 </script>
