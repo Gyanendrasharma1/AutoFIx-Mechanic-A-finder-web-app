@@ -561,7 +561,7 @@ p {
         </div>
     </footer>
 
-    <!-- Login Modal -->
+   <!-- Login Modal -->
 <div id="loginModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal('loginModal')">&times;</span>
@@ -607,54 +607,87 @@ p {
         </div>
     </div>
 </div>
- <!-- Include your JavaScript here -->
- <script>
-    // Check login state from localStorage
-    let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-    // Update button text based on login state on page load
-    window.onload = function() {
-        if (isLoggedIn) {
-            document.getElementById('login-signup-button').innerText = "Logout"; // Change to Logout if logged in
-        } else {
-            document.getElementById('login-signup-button').innerText = "Login / Sign Up"; // Change to Login / Sign Up if not logged in
-        }
-    };
-</script>
+<!-- JavaScript for modal functionality -->
 <script>
-    // Check login state from localStorage on page load
-    window.onload = function() {
-        const userSession = JSON.parse(localStorage.getItem('userSession'));
-        if (userSession) {
-            document.getElementById('login-signup-button').innerText = "Logout"; // Update to Logout if logged in
-            isLoggedIn = true;
-        }
-    };
+   // Function to open modal
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = "block";
+}
 
-    // Logout function
-    function logout() {
-        localStorage.removeItem('userSession'); // Remove session from localStorage
-        isLoggedIn = false;
-        document.getElementById('login-signup-button').innerText = "Login / Sign Up"; // Reset button text
-        alert("You have been logged out.");
-        window.location.href = "index.html"; // Redirect to home page
+// Function to close modal
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = "none";
+}
+
+// Show login modal
+function showLogin() {
+    closeModal('signupModal'); // Close signup modal
+    openModal('loginModal'); // Open login modal
+}
+
+// Show signup modal
+function showSignup() {
+    closeModal('loginModal'); // Close login modal
+    openModal('signupModal'); // Open signup modal
+}
+
+// Check login state from localStorage on page load
+let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+// Update button text based on login state on page load
+window.onload = function() {
+    if (isLoggedIn) {
+        document.getElementById('login-signup-button').innerText = "Logout"; // Change to Logout if logged in
+    } else {
+        document.getElementById('login-signup-button').innerText = "Login / Sign Up"; // Change to Login / Sign Up if not logged in
     }
+};
 
-    // Toggle login/logout
-    document.getElementById('login-signup-button').addEventListener('click', function () {
-        if (isLoggedIn) {
-            logout();
-        } else {
-            openModal('loginModal');
-        }
+// Logout function
+function logout() {
+    localStorage.removeItem('isLoggedIn'); // Remove session from localStorage
+    isLoggedIn = false;
+    document.getElementById('login-signup-button').innerText = "Login / Sign Up"; // Reset button text
+    alert("You have been logged out.");
+    window.location.href = "index.html"; // Redirect to home page
+}
+
+// Toggle login/logout
+document.getElementById('login-signup-button').addEventListener('click', function () {
+    if (isLoggedIn) {
+        logout();
+    } else {
+        openModal('loginModal');
+    }
+});
+
+// Close modals when clicking outside the modal content
+window.onclick = function(event) {
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    if (event.target === loginModal) {
+        closeModal('loginModal');
+    } else if (event.target === signupModal) {
+        closeModal('signupModal');
+    }
+};
+
+// Add event listeners for close buttons
+document.querySelectorAll('.close').forEach(function(element) {
+    element.addEventListener('click', function() {
+        const modalId = element.closest('.modal').id; // Get the closest modal id
+        closeModal(modalId); // Call closeModal with the modal id
     });
+});
+
 </script>
 
-    
        
 
-    <!-- Linking the external JavaScript file -->
-    <script src="scripts.js" defer></script>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <!-- JavaScript for Modals -->
