@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
+const speakeasy = require('speakeasy');
+const twilio = require('twilio'); // Import Twilio
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const cors = require('cors');
@@ -17,9 +19,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+
+
 // Middleware for session management
 app.use(session({
-    secret: 'yourSecretKey', // Change this to a strong secret key
+    secret: process.env.SESSION_SECRET || 'yourSecretKey', // Change this to a strong secret key
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 60000 * 60 } // Session will last for 1 hour
@@ -51,6 +55,175 @@ db.connect((err) => {
     }
 });
 
+
+
+app.post('/register', (req, res) => {
+    console.log('Registration data received:', req.body); // Log the received data
+
+    const {
+        fullName,
+        address,
+        city,
+        state,
+        pinCode,
+        country,
+        email,
+        idProof,
+        idNumber,
+        experience,
+        availability,
+        profilePhoto
+    } = req.body;
+
+    // Check if all fields are filled
+    if (!fullName || !address || !city || !state || !pinCode || !country || !email || !idProof || !idNumber || !experience || !availability || !profilePhoto) {
+        return res.status(400).json({ message: 'Please fill all fields' });
+    }
+
+    const mechanicData = {
+        full_name: fullName,
+        address,
+        city,
+        state,
+        pin_code: pinCode,
+        country,
+        email,
+        id_proof: idProof,
+        id_number: idNumber,
+        experience,
+        availability,
+        profile_photo: profilePhoto
+    };
+
+    // Check if the email already exists
+    const checkEmailSql = 'SELECT * FROM mechanics WHERE email = ?';
+    db.query(checkEmailSql, [email], (err, results) => {
+        if (err) {
+            console.error('Error checking existing email:', err);
+            return res.status(500).json({ message: 'Error checking email' });
+        }
+        
+        // If email exists, return error
+        if (results.length > 0) {
+            return res.status(409).json({ message: 'Email already in use' });
+        }
+
+        // If email does not exist, proceed to insert
+        const query = 'INSERT INTO mechanics SET ?';
+        db.query(query, mechanicData, (err, result) => {
+            if (err) {
+                console.error('Database insertion error:', err); // Log the error
+                return res.status(500).json({ message: 'Error storing data' });
+            }
+
+            // Redirect to the mechanic page after successful registration
+            res.redirect('/became_mechanic.html');
+        });
+    });
+});
+
+
+
+// Endpoint for registering new mechanics
+app.post('/register-mechanic', (req, res) => {
+    const { full_name, address, city, state, pin_code, country, email, id_proof, id_number, experience, availability, profile_photo, mobile_number } = req.body;
+
+    // Insert new mechanic data into the database
+    db.query('INSERT INTO mechanics (full_name, address, city, state, pin_code, country, email, id_proof, id_number, experience, availability, profile_photo, mobile_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', 
+    [full_name, address, city, state, pin_code, country, email, id_proof, id_number, experience, availability, profile_photo, mobile_number],
+    (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ success: false, message: 'Registration failed. Please try again.' });
+        }
+        return res.json({ success: true, message: 'Registration successful!', data: results });
+    });
+});
+
+
+// Twilio setup
+const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+
+// Function to generate a 6-digit OTP
+function generateOTP() {
+    return Math.floor(100000 + Math.random() * 900000); // Generates a 6-digit OTP
+}
+
+// Endpoint to send OTP to mobile number
+app.post('/send-otp', (req, res) => {
+    const { mobileNumber } = req.body;
+
+    // Generate OTP
+    const otp = generateOTP();
+    console.log(`Generated OTP: ${otp}`); // Log the OTP for debugging purposes
+
+    // Send OTP via SMS using Twilio
+    twilioClient.messages
+        .create({
+            body: `Your OTP is: ${otp}`,
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: mobileNumber
+        })
+        .then(() => {
+            console.log(`Sending OTP ${otp} to ${mobileNumber}`);
+
+            // Store the OTP securely in the database with expiration
+            const expirationTime = Date.now() + 300000; // OTP valid for 5 minutes
+            db.query('INSERT INTO otp_records (mobile_number, otp, expires_at) VALUES (?, ?, ?)', [mobileNumber, otp, expirationTime], (err) => {
+                if (err) {
+                    console.error('Error storing OTP:', err);
+                    return res.status(500).json({ success: false, message: 'Failed to store OTP.' });
+                }
+                return res.json({ success: true, message: 'OTP sent successfully.' });
+            });
+        })
+        .catch(error => {
+            console.error('Error sending OTP:', error);
+            return res.status(500).json({ success: false, message: 'Failed to send OTP.' });
+        });
+});
+
+// Endpoint to verify OTP and register mechanic
+app.post('/verify-otp', (req, res) => {
+    const { mobileNumber, otp } = req.body;
+
+    // Check if the OTP is valid and not expired
+    db.query('SELECT otp FROM otp_records WHERE mobile_number = ? AND expires_at > ?', [mobileNumber, Date.now()], (err, results) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ success: false, message: 'Database error' });
+        }
+
+        if (results.length === 0) {
+            return res.status(400).json({ success: false, message: 'OTP expired or invalid.' });
+        }
+
+        const storedOtp = results[0].otp;
+
+        // Verify OTP
+        if (parseInt(otp) === parseInt(storedOtp)) {
+            // OTP is valid
+            db.query('DELETE FROM otp_records WHERE mobile_number = ?', [mobileNumber]); // Remove OTP after successful verification
+            // Check if mechanic already exists
+            db.query('SELECT * FROM mechanics WHERE mobile_number = ?', [mobileNumber], (err, results) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({ success: false, message: 'Database error' });
+                }
+
+                if (results.length > 0) {
+                    // Existing mechanic - Redirect to the mechanic page
+                    return res.json({ success: true, message: 'Logged in successfully', data: results[0] });
+                } else {
+                    // New mechanic - Proceed with registration
+                    return res.json({ success: true, message: 'OTP verified. Proceed to registration.' });
+                }
+            });
+        } else {
+            return res.status(400).json({ success: false, message: 'Invalid OTP' });
+        }
+    });
+});
 // Serve the landing page (only if user is logged in)
 app.get('/landing-page', (req, res) => {
     if (req.session.loggedIn) {
@@ -101,6 +274,11 @@ app.post('/api/signup', (req, res) => {
         });
     });
 });
+
+
+
+
+
 
 // Login logic: Validate user credentials and set session
 app.post('/api/login', (req, res) => {
@@ -166,8 +344,8 @@ app.post('/api/email-support', async (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail', // Use your email service
         auth: {
-            user: 'your-email@gmail.com', // Your email
-            pass: 'your-email-password', // Your email password or app password
+            user: process.env.EMAIL_USER, // Your email from .env
+            pass: process.env.EMAIL_PASS, // Your email password or app password
         },
     });
 

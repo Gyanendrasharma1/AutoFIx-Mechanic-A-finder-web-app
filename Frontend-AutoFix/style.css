@@ -1163,3 +1163,82 @@ p {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+/* change in email input box  */
+  #loginForm {
+    margin-left: 5px;
+    margin-right: 5px;
+    justify-content: center;
+    width: 480px;
+    
+  }
+#signupForm{
+    margin-left: 5px;
+    margin-right: 5px;
+    justify-content: center;
+    width: 480px;
+}
+/* Modal styling */
+.modal-mechanic {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+/* Modal content styling */
+.modal-content-mechanic-unique {
+    background-color: #fff;
+    margin: 15% auto;       
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* Close button styling */
+.close-mechanic {
+    color: #aaa;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close-mechanic:hover,
+.close-mechanic:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Input fields and button */
+input[type="tel"], input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

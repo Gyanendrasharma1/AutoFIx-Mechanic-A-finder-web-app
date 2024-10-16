@@ -22,7 +22,7 @@
             <nav>
                 <ul>
                     <li><a href="findmechanic.html" class="restricted-nav">Find Mechanic</a></li>
-                    <li><a href="became_Mechanic.html" class="restricted-nav">Become a Mechanic</a></li>
+                    <li><a href="#" id="becomeMechanicLink"  class="restricted-nav">Become a Mechanic</a></li>
                     <li><a href="customer_support.html" >Customer Support</a></li>
                     <li><a href="about_us.html">About Us</a></li>
                      <!-- Login/Sign Up Button -->
@@ -31,7 +31,7 @@
             </nav>
         </div>
     </header>
-    
+
     <main>
         <section id="hero-banner">
             <div id="slideshow-container">
@@ -335,6 +335,29 @@
         </div>
     </div>
 </div>
+
+<!-- Modal for Mobile Number and OTP -->
+<div id="mechanicModal" class="modal-mechanic">
+    <div class="modal-content-mechanic-unique">
+        <span class="close-mechanic">&times;</span>
+        <div id="mobile-step">
+            <h2>Enter Mobile Number</h2>
+            <form id="mobileForm">
+                <input type="tel" id="mobileNumber" placeholder="Enter Mobile Number" required>
+                <button type="submit">Send OTP</button>
+            </form>
+        </div>
+        
+        <div id="otp-step" style="display: none;">
+            <h2>Enter OTP</h2>
+            <form id="otpForm">
+                <input type="text" id="otp" placeholder="Enter OTP" required>
+                <button type="submit">Verify OTP</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Include your JavaScript here -->
  <script>
     document.getElementById('signupForm').addEventListener('submit', function (event) {
@@ -449,7 +472,76 @@ function showSlidesManual(index) {
     slides[index - 1].style.display = "block";  
 }
 
-// 10-oct-2024
+// 16-oct-2024
+
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("mechanicModal");
+    const modalContent = document.querySelector(".modal-content-mechanic-unique");
+    const mobileStep = document.getElementById("mobile-step");
+    const otpStep = document.getElementById("otp-step");
+    
+    const mobileForm = document.getElementById("mobileForm");
+    const otpForm = document.getElementById("otpForm");
+    const becomeMechanicLink = document.getElementById("becomeMechanicLink");
+    const closeBtn = document.querySelector(".close-mechanic");
+
+    // Open the modal
+    becomeMechanicLink.addEventListener("click", function (event) {
+        event.preventDefault();
+        modal.style.display = "block";
+    });
+
+    // Close the modal
+    closeBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // Handle mobile number submission
+    mobileForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const mobileNumber = document.getElementById("mobileNumber").value;
+
+        // Mock sending OTP (replace with server call)
+        alert("OTP sent to " + mobileNumber);
+
+        // Move to the OTP step
+        mobileStep.style.display = "none";
+        otpStep.style.display = "block";
+    });
+
+    // Handle OTP submission
+    otpForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const otp = document.getElementById("otp").value;
+
+        // Mock OTP verification (replace with server call)
+        if (otp === "1234") {
+            alert("OTP verified!");
+
+            // Redirect based on verification
+            const isNewMechanic = true; // This should be set based on your server's response
+
+            modal.style.display = "none";
+            if (isNewMechanic) {
+                // Redirect to the registration page for new mechanics
+                window.location.href = "mechanic-registration.html";
+            } else {
+                // Redirect to the "Become a Mechanic" page for existing mechanics
+                window.location.href = "became_Mechanic.html";
+            }
+        } else {
+            alert("Invalid OTP. Please try again.");
+        }
+    });
+
+    // Close the modal if user clicks outside it
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+});
+
 </script>
 
     <!-- Closing body tag -->

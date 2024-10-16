@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mechanic Registration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            /* Light background color for contrast */
+        }
+
+        main {
+            width: 100%;
+            max-width: 700px;
+            /* Maximum width for the registration container */
+            margin: auto;
+        }
+
+        .registration-container {
+            margin-top: 100px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            /* Rounded corners for a modern look */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            /* Soft shadow for depth */
+            animation: fadeIn 0.5s ease-in-out;
+            /* Smooth fade-in animation */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+            /* Blue color for heading */
+            font-size: 24px;
+            /* Larger font size for heading */
+            font-weight: bold;
+            /* Bold font weight for emphasis */
+        }
+
+        #registrationForm {
+            margin-right: 30px;
+            justify-content: center;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 15px;
+            /* Increased padding for comfort */
+            margin: 10px 0;
+            /* Spacing between input fields */
+            border: 2px solid #007bff;
+            /* Blue border color */
+            border-radius: 8px;
+            /* Rounded corners */
+            font-size: 16px;
+            /* Increased font size for readability */
+            transition: border-color 0.3s;
+            /* Smooth transition for border color */
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #0056b3;
+            /* Darker blue on focus */
+            outline: none;
+            /* Remove default outline */
+        }
+
+        label {
+            margin-top: 10px;
+            /* Space above the label */
+            color: #333;
+            /* Dark color for labels */
+            font-weight: bold;
+            /* Bold labels for better visibility */
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            /* Increased padding for button */
+            background-color: #007bff;
+            /* Blue background for button */
+            color: white;
+            /* White text color */
+            border: none;
+            border-radius: 8px;
+            /* Rounded corners for button */
+            cursor: pointer;
+            font-size: 18px;
+            /* Larger font size for button */
+            transition: background-color 0.3s;
+            /* Smooth background transition */
+            margin-top: 15px;
+            /* Space above the button */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            /* Darker blue on hover */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+                /* Slide in from the top */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div class="registration-container">
+            <h2>Mechanic Registration</h2>
+            <form id="registrationForm">
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <input type="text" id="address" placeholder="Address" required>
+                <input type="text" id="city" placeholder="City" required>
+                <input type="text" id="state" placeholder="State" required>
+                <input type="text" id="pinCode" placeholder="Pin Code" required>
+                <input type="text" id="country" placeholder="Country" required>
+                <input type="email" id="email" placeholder="Email" required>
+
+                <label for="idProof">ID Proof:</label>
+                <select id="idProof" required onchange="updateIdNumberPlaceholder()">
+                    <option value="" disabled selected>Select ID Proof</option>
+                    <option value="aadhaar">Aadhaar Card</option>
+                    <option value="pan">PAN Card</option>
+                    <!-- Add other options if needed -->
+                </select>
+
+                <input type="text" id="idNumber" placeholder="ID Number" required>
+                <input type="number" id="experience" placeholder="Years of Experience" required>
+                <input type="text" id="availability" placeholder="Availability Timing" required>
+                <input type="file" id="profilePhoto" accept="image/*" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+
+    const formData = new FormData(this); // Create a FormData object from the form
+
+    // Send data to the backend
+    fetch('http://localhost:3000/register', {
+        method: 'POST',
+        body: formData // Send FormData directly
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error('Network response was not ok.');
+    })
+    .then(data => {
+        // Redirect to "became_mechanic.html" after successful registration
+        window.location.href = "became_mechanic.html";
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        alert("An error occurred during registration. Please try again."); // User feedback
+    });
+});
+
+// Function to update the ID number input placeholder and validation
+function updateIdNumberPlaceholder() {
+    const idProof = document.getElementById("idProof").value;
+    const idNumberInput = document.getElementById("idNumber");
+
+    if (idProof === "aadhaar") {
+        idNumberInput.placeholder = "ID Number (12 digits for Aadhaar)";
+        idNumberInput.maxLength = 12; // Limit to 12 digits
+        idNumberInput.pattern = "\\d{12}"; // Pattern for 12 digits
+        idNumberInput.type = "text"; // Change to text to allow length checking
+    } else if (idProof === "pan") {
+        idNumberInput.placeholder = "ID Number (10 characters for PAN)";
+        idNumberInput.maxLength = 10; // Limit to 10 characters
+        idNumberInput.pattern = "[A-Z]{5}\\d{4}[A-Z]"; // Pattern for PAN
+        idNumberInput.type = "text"; // Keep it as text
+    } else {
+        idNumberInput.placeholder = "ID Number";
+        idNumberInput.maxLength = ""; // Reset maxLength
+        idNumberInput.pattern = ""; // Reset pattern
+        idNumberInput.type = "text"; // Reset type
+    }
+    idNumberInput.value = ""; // Clear the previous value
+}
+
+// Ensure the function is called when the ID Proof dropdown changes
+document.getElementById("idProof").addEventListener("change", updateIdNumberPlaceholder);
+
+    </script>
+
+</body>
+
+</html>
