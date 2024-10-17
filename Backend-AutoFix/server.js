@@ -73,6 +73,43 @@ app.post('/check-mechanic', (req, res) => {
     });
 });
 
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); // directory to save uploaded files
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Rename file with current timestamp
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// Middleware to parse form data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use('/uploads', express.static('uploads')); // Serve static files from uploads directory
+
+// Handle the mechanic registration form submission
+app.post('/submit-mechanic', upload.single('profilePhoto'), (req, res) => {
+    // Extracting values from the request body
+    const { full_name, address, city, state, pin_code, country, email, mobileNumber, id_proof, id_number, experience, availability } = req.body;
+    const profilePhoto = req.file ? req.file.filename : null; // Get the uploaded file name if any
+
+    // SQL query to insert the mechanic data into the database
+    const sql = 'INSERT INTO mechanics (full_name, address, city, state, pin_code, country, email, mobileNumber, id_proof, id_number, experience, availability, profile_photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const values = [full_name, address, city, state, pin_code, country, email, mobileNumber, id_proof, id_number, experience, availability, profilePhoto];
+
+    // Executing the SQL query
+    db.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error inserting data into database:', err);
+            return res.status(500).send('Error saving data.');
+        }
+        console.log('Mechanic registered:', result);
+        res.send('Mechanic registration successful!');
+    });
+});
 
 // Serve the landing page (only if user is logged in)
 app.get('/landing-page', (req, res) => {

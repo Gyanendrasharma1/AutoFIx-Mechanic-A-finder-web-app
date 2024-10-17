@@ -99,76 +99,95 @@
         <div class="registration-container">
             <h2>Mechanic Registration</h2>
             <form id="registrationForm" action="/submit-mechanic" method="POST" enctype="multipart/form-data">
-                <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                <input type="text" id="full_Name" name="full_name" placeholder="Full Name" required>
                 <input type="text" id="address" name="address" placeholder="Address" required>
                 <input type="text" id="city" name="city" placeholder="City" required>
                 <input type="text" id="state" name="state" placeholder="State" required>
-                <input type="text" id="pinCode" name="pinCode" placeholder="Pin Code" required>
+                <input type="text" id="pinCode" name="pin_code" placeholder="Pin Code" required>
                 <input type="text" id="country" name="country" placeholder="Country" required>
                 <input type="email" id="email" name="email" placeholder="Email" required>
-
+                
+                <!-- Add mobile number input field -->
+                <input type="tel" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" required readonly>
+                
                 <label for="idProof">ID Proof:</label>
-                <select id="idProof" name="idProof" required onchange="updateIdNumberPlaceholder()">
+                <select id="idProof" name="id_proof" required onchange="updateIdNumberPlaceholder()">
                     <option value="" disabled selected>Select ID Proof</option>
                     <option value="aadhaar">Aadhaar Card</option>
                     <option value="pan">PAN Card</option>
                 </select>
-
-                <input type="text" id="idNumber" name="idNumber" placeholder="ID Number" required>
+                
+                <input type="text" id="idNumber" name="id_number" placeholder="ID Number" required>
                 <input type="number" id="experience" name="experience" placeholder="Years of Experience" required>
                 <input type="text" id="availability" name="availability" placeholder="Availability Timing" required>
                 <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" required>
-
+                
                 <button type="submit">Submit</button>
             </form>
         </div>
+        
     </main>
 
 
     <script>
-        document.getElementById("registrationForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent the default form submission
+         // Ensure this script runs after the DOM is fully loaded
+         document.addEventListener('DOMContentLoaded', () => {
+            // Get the mobile number from localStorage and set it to the mobile number input field
+            const mobileNumberInput = document.getElementById('mobileNumber');
+            const storedMobileNumber = localStorage.getItem('mobileNumber');
 
-            // Create a FormData object to hold the form data
-            const formData = new FormData(this);
-
-            // Send the form data to the server using fetch API
-            fetch("/submit-mechanic", {
-                method: "POST",
-                body: formData,
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Submission failed. Please try again.");
-                    }
-                    return response.text(); // Get the response text (or JSON if applicable)
-                })
-                .then(data => {
-                    console.log(data); // Log the response data (for debugging)
-                    // Redirect to became_mechanic.html after successful submission
-                    window.location.href = "became_mechanic.html";
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    alert(error.message); // Show an alert with the error message
-                });
-        });
-
-        // Optional: Function to update the ID Number placeholder based on ID Proof selection
-        function updateIdNumberPlaceholder() {
-            const idProofSelect = document.getElementById("idProof");
-            const idNumberInput = document.getElementById("idNumber");
-
-            if (idProofSelect.value === "aadhaar") {
-                idNumberInput.placeholder = "Aadhaar Number";
-            } else if (idProofSelect.value === "pan") {
-                idNumberInput.placeholder = "PAN Number";
-            } else {
-                idNumberInput.placeholder = "ID Number";
+            if (storedMobileNumber) {
+                mobileNumberInput.value = storedMobileNumber; // Populate the mobile number input
             }
-        }
 
+            // Handle form submission
+            document.getElementById("registrationForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Create a FormData object to hold the form data
+                const formData = new FormData(this);
+
+                // Send the form data to the server using fetch API
+                fetch("/submit-mechanic", {
+                    method: "POST",
+                    body: formData,
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Submission failed. Please try again.");
+                        }
+                        return response.text(); // Get the response text (or JSON if applicable)
+                    })
+                    .then(data => {
+                        console.log(data); // Log the response data (for debugging)
+                        // Redirect to became_mechanic.html after successful submission
+                        window.location.href = "became_mechanic.html";
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                        alert(error.message); // Show an alert with the error message
+                    });
+            });
+
+            // Optional: Function to update the ID Number placeholder based on ID Proof selection
+            function updateIdNumberPlaceholder() {
+                const idProofSelect = document.getElementById("idProof");
+                const idNumberInput = document.getElementById("idNumber");
+
+                if (idProofSelect.value === "aadhaar") {
+                    idNumberInput.placeholder = "Aadhaar Number";
+                } else if (idProofSelect.value === "pan") {
+                    idNumberInput.placeholder = "PAN Number";
+                } else {
+                    idNumberInput.placeholder = "ID Number";
+                }
+            }
+
+            // Attach the updateIdNumberPlaceholder function to the select element
+            document.getElementById("idProof").addEventListener("change", updateIdNumberPlaceholder);
+        });
     </script>
+   
     <script src="scripts.js"></script>
 
 </body>
