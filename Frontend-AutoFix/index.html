@@ -473,57 +473,56 @@ function showSlidesManual(index) {
 
 // 16-oct-2024
 document.addEventListener("DOMContentLoaded", function() {
-// Select elements from the DOM
-const mechanicModal = document.getElementById('mechanicModal');
-const closeBtn = document.querySelector('.close-mechanic');
-const mobileStep = document.getElementById('mobile-step');
-const otpStep = document.getElementById('otp-step');
-const mobileForm = document.getElementById('mobileForm');
-const otpForm = document.getElementById('otpForm');
-const mobileNumberInput = document.getElementById('mobileNumber');
-const otpInput = document.getElementById('otp');
+    // Select elements from the DOM
+    const mechanicModal = document.getElementById('mechanicModal');
+    const closeBtn = document.querySelector('.close-mechanic');
+    const mobileStep = document.getElementById('mobile-step');
+    const otpStep = document.getElementById('otp-step');
+    const mobileForm = document.getElementById('mobileForm');
+    const otpForm = document.getElementById('otpForm');
+    const mobileNumberInput = document.getElementById('mobileNumber');
+    const otpInput = document.getElementById('otp');
 
-// Function to open modal
-function openModal() {
-    mechanicModal.style.display = 'block';
-}
-
-// Function to close the modal
-function closeModal() {
-    mechanicModal.style.display = 'none';
-}
-
-// Event listener for closing the modal
-closeBtn.addEventListener('click', closeModal);
-
-// Event listener for the "Become a Mechanic" link
-document.getElementById('becomeMechanicLink').addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent the default action
-    openModal(); // Open the modal
-});
-
-// Handle mobile number form submission
-mobileForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const mobileNumber = mobileNumberInput.value.trim();
-
-    // Validate mobile number
-    if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
-        alert('Please enter a valid 10-digit mobile number.');
-        return;
+    // Function to open modal
+    function openModal() {
+        mechanicModal.style.display = 'block';
     }
 
-    // Simulate backend call to check if mobile number exists
-    fetch('/check-mechanic', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ mobileNumber })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.newMechanic) {
+    // Function to close the modal
+    function closeModal() {
+        mechanicModal.style.display = 'none';
+    }
+
+    // Event listener for closing the modal
+    closeBtn.addEventListener('click', closeModal);
+
+    // Event listener for the "Become a Mechanic" link
+    document.getElementById('becomeMechanicLink').addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent the default action
+        openModal(); // Open the modal
+    });
+
+    // Handle mobile number form submission
+    mobileForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const mobileNumber = mobileNumberInput.value.trim();
+
+        // Validate mobile number
+        if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
+            alert('Please enter a valid 10-digit mobile number.');
+            return;
+        }
+
+        // Simulate backend call to check if mobile number exists
+        fetch('/check-mechanic', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ mobileNumber })
+        })
+        .then(response => response.json())
+        .then(data => {
             // Save OTP locally for verification purpose
             localStorage.setItem('otp', '1234'); // Simulated OTP
             localStorage.setItem('mobileNumber', mobileNumber);
@@ -532,40 +531,46 @@ mobileForm.addEventListener('submit', (event) => {
             // Show the OTP step and hide the mobile number step
             mobileStep.style.display = 'none';
             otpStep.style.display = 'block';
-        } else {
-            // Existing mechanic, redirect directly
-            window.location.href = 'became_mechanic.html';
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+
+            // Save the mechanic status (new or existing) in local storage
+            localStorage.setItem('isNewMechanic', data.newMechanic);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        });
     });
-});
 
-// Handle OTP form submission
-otpForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const enteredOtp = otpInput.value.trim();
-    const storedOtp = localStorage.getItem('otp');
+    // Handle OTP form submission
+    otpForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const enteredOtp = otpInput.value.trim();
+        const storedOtp = localStorage.getItem('otp');
+        const isNewMechanic = localStorage.getItem('isNewMechanic') === 'true'; // Retrieve mechanic status
 
-    // Check if the entered OTP matches the stored OTP
-    if (enteredOtp === storedOtp) {
-        alert('OTP verified successfully.');
+        // Check if the entered OTP matches the stored OTP
+        if (enteredOtp === storedOtp) {
+            alert('OTP verified successfully.');
 
-        // Redirect to the mechanic registration page for new mechanics
-        window.location.href = 'mechanic-registration.html';
-    } else {
-        alert('Invalid OTP. Please try again.');
-    }
-});
+            // Redirect based on mechanic status
+            if (isNewMechanic) {
+                // Redirect new mechanics to mechanic-registration.html
+                window.location.href = 'mechanic-registration.html';
+            } else {
+                // Redirect existing mechanics to became_mechanic.html
+                window.location.href = 'became_mechanic.html';
+            }
+        } else {
+            alert('Invalid OTP. Please try again.');
+        }
+    });
 
-// Close the modal when clicking outside of it
-window.addEventListener('click', (event) => {
-    if (event.target === mechanicModal) {
-        closeModal();
-    }
-});
+    // Close the modal when clicking outside of it
+    window.addEventListener('click', (event) => {
+        if (event.target === mechanicModal) {
+            closeModal();
+        }
+    });
 });
 
 </script>
