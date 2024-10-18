@@ -485,85 +485,105 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to open modal
     function openModal() {
-        mechanicModal.style.display = 'block';
+        if (mechanicModal) mechanicModal.style.display = 'block';
     }
 
     // Function to close the modal
     function closeModal() {
-        mechanicModal.style.display = 'none';
+        if (mechanicModal) mechanicModal.style.display = 'none';
     }
 
     // Event listener for closing the modal
-    closeBtn.addEventListener('click', closeModal);
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
 
     // Event listener for the "Become a Mechanic" link
-    document.getElementById('becomeMechanicLink').addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent the default action
-        openModal(); // Open the modal
-    });
+    const becomeMechanicLink = document.getElementById('becomeMechanicLink');
+    if (becomeMechanicLink) {
+        becomeMechanicLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            openModal();
+        });
+    }
 
     // Handle mobile number form submission
-    mobileForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const mobileNumber = mobileNumberInput.value.trim();
+    if (mobileForm) {
+        mobileForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const mobileNumber = mobileNumberInput.value.trim();
 
-        // Validate mobile number
-        if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
-            alert('Please enter a valid 10-digit mobile number.');
-            return;
-        }
+            if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
+                alert('Please enter a valid 10-digit mobile number.');
+                return;
+            }
 
-        // Simulate backend call to check if mobile number exists
-        fetch('/check-mechanic', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ mobileNumber })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Save OTP locally for verification purpose
-            localStorage.setItem('otp', '1234'); // Simulated OTP
-            localStorage.setItem('mobileNumber', mobileNumber);
-            alert('OTP sent successfully.');
-
-            // Show the OTP step and hide the mobile number step
-            mobileStep.style.display = 'none';
-            otpStep.style.display = 'block';
-
-            // Save the mechanic status (new or existing) in local storage
-            localStorage.setItem('isNewMechanic', data.newMechanic);
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
+            fetch('/check-mechanic', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ mobileNumber })
+            })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('otp', '1234'); // Simulated OTP
+                localStorage.setItem('mobileNumber', mobileNumber);
+                alert('OTP sent successfully.');
+                mobileStep.style.display = 'none';
+                otpStep.style.display = 'block';
+                localStorage.setItem('isNewMechanic', data.newMechanic);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
         });
-    });
+    }
 
     // Handle OTP form submission
-    otpForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const enteredOtp = otpInput.value.trim();
-        const storedOtp = localStorage.getItem('otp');
-        const isNewMechanic = localStorage.getItem('isNewMechanic') === 'true'; // Retrieve mechanic status
+    if (otpForm) {
+        otpForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const enteredOtp = otpInput.value.trim();
+            const storedOtp = localStorage.getItem('otp');
+            const isNewMechanic = localStorage.getItem('isNewMechanic') === 'true';
 
-        // Check if the entered OTP matches the stored OTP
-        if (enteredOtp === storedOtp) {
-            alert('OTP verified successfully.');
+            if (enteredOtp === storedOtp) {
+                alert('OTP verified successfully.');
+                localStorage.setItem('isMechanicLoggedIn', 'true');
+                localStorage.setItem('mechanicMobileNumber', localStorage.getItem('mobileNumber'));
 
-            // Redirect based on mechanic status
-            if (isNewMechanic) {
-                // Redirect new mechanics to mechanic-registration.html
-                window.location.href = 'mechanic-registration.html';
+                if (isNewMechanic) {
+                    window.location.href = 'mechanic-registration.html';
+                } else {
+                    window.location.href = 'became_mechanic.html';
+                }
             } else {
-                // Redirect existing mechanics to became_mechanic.html
-                window.location.href = 'became_mechanic.html';
+                alert('Invalid OTP. Please try again.');
             }
-        } else {
-            alert('Invalid OTP. Please try again.');
+        });
+    }
+
+    // Logout functionality
+    const logoutButton = document.getElementById('logout');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.clear();
+            alert('Logged out successfully.');
+            window.location.href = 'index.html';
+        });
+    }
+
+    // Page-specific session check
+    const protectedPages = ['/became_mechanic.html', '/mechanic-dashboard.html']; // Add all protected pages
+    const currentPage = window.location.pathname;
+
+    if (protectedPages.includes(currentPage)) {
+        if (localStorage.getItem('isMechanicLoggedIn') !== 'true') {
+            window.location.href = 'index.html';
         }
-    });
+    }
 
     // Close the modal when clicking outside of it
     window.addEventListener('click', (event) => {
@@ -572,6 +592,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
 
 </script>
 
