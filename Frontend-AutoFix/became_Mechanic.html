@@ -5,318 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Became a Mechanic</title>
     <link rel="stylesheet" href="style.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-       /* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-}
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background color */
+            color: #333; /* Dark text color */
+        }
 
-  </style>
-       
+        /* Header Styles */
+        .header-container {
+            background-color: #000000; /* Blue background */
+            color: #ffffff; /* White text */
+            padding: 15px;
+            display: flex;
+            align-items: center; /* Center the text vertically */
+           
+            height: 60px; /* Fixed height */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow */
+            position: fixed; /* Fix position at the top */
+            width: 100%; /* Full width */
+            z-index: 1000; /* Keep it on top */
+        }
 
-    <!-- Include Leaflet.js for map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    
+        .header-container h1 {
+            font-size: 30px; /* Font size */
+            font-weight: bold; /* Bold text */
+            margin-left: 0px;
+        }
+        .header-container p{
+            margin-top: 10px;
+            margin-left: 0px;
+            font-weight: bold;
+            font-size: 15px;
+            color:#007bff ;
+        }
+
+ /* Toggle Button Container */
+ .toggle-button-container {
+            background-color: #ffffff; /* White background */
+            height: 60px; /* Increased height */
+            width: 100%; /* Full width */
+            display: flex; /* Use flexbox for centering */
+            align-items: center; /* Center items vertically */
+            position: fixed; /* Fix position at the top */
+            top: 60px; /* Below the header */
+        }
+
+        /* Toggle Button Styles */
+        #toggle-button {
+            background-color: #feffff;
+            color: #000000; /* Black text */
+            border: none;
+            padding: 0; /* Remove padding */
+            height: 100%; /* Match button height to container */
+            width: 60px; /* Fixed width for the button */
+            cursor: pointer; /* Pointer cursor */
+            font-size: 24px; /* Font size */
+            margin-left: 0; /* No margin on the left */
+            font-weight: bold;
+        }
+
+        /* Navigation Bar Styles */
+        .nav-bar {
+            width: 250px; /* Width of the sidebar */
+            background-color: #000000; /* Blue background */
+            height: 100%; /* Full height */
+            position: fixed; /* Fix position on the left */
+            top: 60px; /* Below the toggle button */
+            left: -250px; /* Start off-screen */
+            transition: left 0.3s ease; /* Slide transition */
+            z-index: 999; /* Just below the header */
+            margin-top: 0.5px;
+        }
+
+        .nav-bar.active {
+            left: 0; /* Slide in */
+        }
+
+        .nav-bar a {
+            display: block; /* Stack links vertically */
+            color: rgb(253, 253, 253); /* White text */
+            padding: 15px 20px; /* Padding for links */
+            text-decoration: none; /* Remove underline */
+            font-size: 18px; /* Font size for links */
+        }
+
+        .nav-bar a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+         /* Close Button */
+         .close-button {
+            background: none;
+            border: none;
+            color: rgb(255, 255, 255);
+            font-size: 24px;
+            align-self: flex-end; /* Position close button at the top right */
+           
+            cursor: pointer; /* Pointer cursor */
+            margin-left: 0px;
+
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <h1>AutoFix</h1> <!-- Company Name -->
-                
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="landing-page.html">Home</a></li>
-                    <li><a href="findmechanic.html" class="restricted-nav">Find Mechanic</a></li>
-                    <li><a href="customer_support.html" >Customer Support</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                     <!-- Login/Sign Up Button -->
-            <li><button id="login-signup-button" class="icon-button">Login / Sign Up</button></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-      
-    </main>
-   
-
-        <footer>  
-            <div class="footer-header">
-                <h1>AutoFix</h1>
-            </div>
-        
-            <div class="footer-container">
-                <!-- First Row -->
-                <div class="footer-row">
-                    <!-- Company Section -->
-                    <div class="footer-section">
-                        <h3>Company</h3>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Our Story</a></li>
-                            <li><a href="#">Leadership</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Investors</a></li>
-                            <li><a href="#">Newsroom</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- Customer Support Section -->
-                    <div class="footer-section">
-                        <h3>Customer Support</h3>
-                        <ul>
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Live Chat</a></li>
-                            <li><a href="#">Feedback</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- Services Section -->
-                    <div class="footer-section">
-                        <h3>Services</h3>
-                        <ul>
-                            <li><a href="#">Find a Mechanic</a></li>
-                            <li><a href="#">Become a Mechanic</a></li>
-                            <li><a href="#">Service Plans</a></li>
-                            <li><a href="#">Maintenance Tips</a></li>
-                            <li><a href="#">Book an Appointment</a></li>
-                            <li><a href="#">Emergency Services</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- Product Features Section -->
-                    <div class="footer-section">
-                        <h3>Product Features</h3>
-                        <ul>
-                            <li><a href="#">AutoFix App</a></li>
-                            <li><a href="#">Service Coverage</a></li>
-                            <li><a href="#">Vehicle Types Supported</a></li>
-                            <li><a href="#">Parts & Accessories</a></li>
-                            <li><a href="#">Gift Cards</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- User Engagement Section -->
-                    <div class="footer-section">
-                        <h3>User Engagement</h3>
-                        <ul>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                            <li><a href="#">Community Forum</a></li>
-                            <li><a href="#">Events</a></li>
-                        </ul>
-                    </div>
-                </div>
-        
-                <!-- Second Row -->
-                <div class="footer-row">
-                    <!-- Social Media Links Section -->
-                    <div class="footer-section">
-                        <h3>Social Media</h3>
-                        <ul>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Instagram</a></li>
-                            <li><a href="#">YouTube</a></li>
-                            <li><a href="#">LinkedIn</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- Legal Information Section -->
-                    <div class="footer-section">
-                        <h3>Legal Information</h3>
-                        <ul>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                            <li><a href="#">Accessibility</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- Global Reach Section -->
-                    <div class="footer-section">
-                        <h3>Global Reach</h3>
-                        <ul>
-                            <li><a href="#">Language Selector</a></li>
-                            <li><a href="#">Country-Specific Services</a></li>
-                            <li><a href="#">Service Expansion</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- Sustainability Section -->
-                    <div class="footer-section">
-                        <h3>Sustainability</h3>
-                        <ul>
-                            <li><a href="#">Environmental Impact</a></li>
-                            <li><a href="#">Diversity & Inclusion</a></li>
-                            <li><a href="#">Sustainability Reports</a></li>
-                        </ul>
-                    </div>
-        
-                    <!-- Referral Programs Section -->
-                    <div class="footer-section">
-                        <h3>Referral Programs</h3>
-                        <ul>
-                            <li><a href="#">Refer a Friend</a></li>
-                            <li><a href="#">Affiliate Program</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-                <!-- Existing Footer Content -->
-                <div class="footer-container">
-                    <!-- Your existing footer rows go here -->
-                    <!-- Add your Company, Customer Support, Services, etc. -->
-            
-                    <!-- Copyright Section -->
-                    <div class="footer-copyright">
-                        <p>&copy; 2024 AutoFix. All rights reserved.</p>
-                    </div>
-                </div>
-           
-            
-        </footer>
-
-        <!-- Login Modal -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('loginModal')">&times;</span>
-        <div class="modal-header">
-            <h2>Login</h2>
-        </div>
-        <form id="loginForm">
-            <label for="loginEmail">Email:</label>
-            <input type="email" id="loginEmail" name="loginEmail" required>
-            
-            <label for="loginPassword">Password:</label>
-            <input type="password" id="loginPassword" name="loginPassword" required>
-            
-            <button type="submit">Login</button>
-        </form>
-        <div id="form-toggle">
-            <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
-        </div>
+    <div class="header-container">
+        <h1>AutoFix</h1> <!-- Company Name -->
+        <p>Mechanic</p>
     </div>
-</div>
 
-<!-- Signup Modal -->
-<div id="signupModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('signupModal')">&times;</span>
-        <div class="modal-header">
-            <h2>Sign Up</h2>
-        </div>
-        <form id="signupForm">
-            <label for="signupName">Name:</label>
-            <input type="text" id="signupName" name="signupName" required>
-            
-            <label for="signupEmail">Email:</label>
-            <input type="email" id="signupEmail" name="signupEmail" required>
-            
-            <label for="signupPassword">Password:</label>
-            <input type="password" id="signupPassword" name="signupPassword" required>
-            
-            <button type="submit">Sign Up</button>
-        </form>
-        <div id="form-toggle">
-            <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
-        </div>
+    <div class="toggle-button-container">
+        <button id="toggle-button">☰</button> <!-- Toggle Button -->
     </div>
-</div>
- <!-- Include your JavaScript here -->
- <script>
-    document.getElementById('signupForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        fetch('http://localhost:3000/api/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, email, password }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert(data.message);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    });
-</script>
-<script>
-    // Check login state from localStorage
-    let isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-
-    // Update button text based on login state on page load
-    window.onload = function() {
-        if (isLoggedIn) {
-            document.getElementById('login-signup-button').innerText = "Logout"; // Change to Logout if logged in
-        } else {
-            document.getElementById('login-signup-button').innerText = "Login / Sign Up"; // Change to Login / Sign Up if not logged in
-        }
-    };
-</script>
-<script>
-    // Check login state from localStorage on page load
-    window.onload = function() {
-        const userSession = JSON.parse(localStorage.getItem('userSession'));
-        if (userSession) {
-            document.getElementById('login-signup-button').innerText = "Logout"; // Update to Logout if logged in
-            isLoggedIn = true;
-        }
-    };
-
-    // Logout function
-    function logout() {
-        localStorage.removeItem('userSession'); // Remove session from localStorage
-        isLoggedIn = false;
-        document.getElementById('login-signup-button').innerText = "Login / Sign Up"; // Reset button text
-        alert("You have been logged out.");
-        window.location.href = "index.html"; // Redirect to home page
-    }
-
-    // Toggle login/logout
-    document.getElementById('login-signup-button').addEventListener('click', function () {
-        if (isLoggedIn) {
-            logout();
-        } else {
-            openModal('loginModal');
-        }
-    });
-</script>
-
-
-    <!-- Closing body tag -->
-
-        
-
-    
+    <nav class="nav-bar" id="nav-bar">
        
+        <a href="#">Profile</a>
+        <a href="#">Bookings</a>
+        <a href="#">Payment History</a>
+        <a href="#">Ratings</a>
+        <a href="#">Logout</a>
+        <button class="close-button" id="close-button">Close</button> <!-- Close Button -->
+    </nav>
 
-    <!-- Linking the external JavaScript file -->
-    <script src="scripts.js" defer></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-        
-  
+    <!-- Your content will go here -->
+
+    <script>
+          // Toggle navigation visibility
+          const navBar = document.getElementById('nav-bar');
+        const toggleButton = document.getElementById('toggle-button');
+        const closeButton = document.getElementById('close-button');
+
+        toggleButton.addEventListener('click', function() {
+            navBar.classList.toggle('active'); // Toggle the 'active' class to slide in/out
+        });
+
+        closeButton.addEventListener('click', function() {
+            navBar.classList.remove('active'); // Remove the 'active' class to slide out
+        });
+
+        // Close navigation when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navBar.contains(event.target);
+            const isClickInsideToggle = toggleButton.contains(event.target);
+            
+            if (!isClickInsideNav && !isClickInsideToggle) {
+                navBar.classList.remove('active'); // Close the nav bar if clicking outside
+            }
+        });
+    </script>
+
 </body>
 </html>
