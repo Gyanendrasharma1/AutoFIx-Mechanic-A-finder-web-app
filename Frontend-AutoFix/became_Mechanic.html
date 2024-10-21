@@ -289,29 +289,128 @@
             animation: pulse 2s infinite;
             /* Pulse animation */
         }
+
         .welcome-message {
-    font-size: 26px; /* Font size for visibility */
-    color: #333; /* Dark text color */
-    text-align: center; /* Center the text */
-    margin-top: 50px; /* Space above the message */
-    opacity: 0; /* Start hidden */
-    transform: translateY(10px); /* Initial position slightly down */
-    animation: fadeInUp 0.5s forwards; /* Shorter fade-in animation */
-    font-weight: bold;
-}
+            font-size: 26px;
+            /* Font size for visibility */
+            color: #333;
+            /* Dark text color */
+            text-align: center;
+            /* Center the text */
+            margin-top: 50px;
+            /* Space above the message */
+            opacity: 0;
+            /* Start hidden */
+            transform: translateY(10px);
+            /* Initial position slightly down */
+            animation: fadeInUp 0.5s forwards;
+            /* Shorter fade-in animation */
+            font-weight: bold;
+        }
 
-/* Keyframes for the animation */
-@keyframes fadeInUp {
-    0% {
-        opacity: 0; /* Start invisible */
-        transform: translateY(10px); /* Move up slightly */
-    }
-    100% {
-        opacity: 1; /* Fully visible */
-        transform: translateY(0); /* Return to original position */
-    }
-}
+        /* Keyframes for the animation */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                /* Start invisible */
+                transform: translateY(10px);
+                /* Move up slightly */
+            }
 
+            100% {
+                opacity: 1;
+                /* Fully visible */
+                transform: translateY(0);
+                /* Return to original position */
+            }
+        }
+
+        .status-container {
+            margin-top: 20px;
+            /* Space above the toggle */
+            display: flex;
+            align-items: center;
+            /* Aligns label and toggle vertically */
+        }
+
+        .status-label {
+            
+            /* Space between label and toggle */
+            font-size: 18px;
+            /* Adjust font size as needed */
+            margin-left: 18px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+      
+        #availability-toggle {
+            cursor: pointer;
+            /* Change cursor to pointer on hover */
+        }
+
+        /* Style for the toggle */
+        #availability-toggle {
+            width: 50px;
+            /* Width of the toggle */
+            height: 24px;
+            /* Height of the toggle */
+            border-radius: 12px;
+            /* Rounded edges */
+            appearance: none;
+            /* Remove default checkbox styles */
+            background-color: #ccc;
+            /* Default background color (Offline) */
+            position: relative;
+            /* For positioning the toggle knob */
+            outline: none;
+            /* Remove outline on focus */
+            transition: background-color 0.3s;
+            /* Smooth transition for background color */
+            margin-left: 30px;
+        }
+
+        /* Create a custom toggle knob */
+        #availability-toggle:before {
+            content: "";
+            width: 22px;
+            /* Width of the knob */
+            height: 22px;
+            /* Height of the knob */
+            border-radius: 50%;
+            /* Make the knob circular */
+            background: white;
+            /* Knob color */
+            position: absolute;
+            /* Position it absolutely */
+            top: 1px;
+            /* Align it to the top */
+            left: 1px;
+            /* Align it to the left */
+            transition: transform 0.3s;
+            /* Smooth transition for moving the knob */
+        }
+
+        /* Change styles when toggle is checked (Online) */
+        #availability-toggle:checked {
+            background-color: #4caf50;
+            /* Background color when Online */
+        }
+
+        #availability-toggle:checked:before {
+            transform: translateX(26px);
+            /* Move the knob to the right */
+        }
+
+        /* Status label color */
+        #status-label {
+            margin-left: 15px;
+            /* Space between toggle and status label */
+            font-size: 16px;
+            /* Adjust font size as needed */
+            margin-top: 1px;
+            font-weight: bold;
+        }
+       
     </style>
 </head>
 
@@ -327,20 +426,30 @@
             <button id="toggle-button">☰</button> <!-- Toggle Button -->
         </div>
         <nav class="nav-bar" id="nav-bar">
-
+            <!-- Status toggle section -->
+            <div class="status-container">
+                <label for="availability-toggle" class="status-label">Status:</label>
+                <span id="status-label">Offline</span>
+                <input type="checkbox" id="availability-toggle" />
+                
+            </div>
             <a href="#profile">Profile</a>
             <a href="#">Bookings</a>
             <a href="#">Payment History</a>
             <a href="#">Ratings</a>
+
+
             <a href="#" id="logout-button">Logout</a>
             <button class="close-button" id="close-button">Close</button> <!-- Close Button -->
         </nav>
+
+
     </header>
 
     <main>
         <div id="welcome-message" class="welcome-message">
-    <h1>Welcome, <span id="mechanic-name"></span>!</h1>
-</div>
+            <h1>Welcome, <span id="mechanic-name"></span>!</h1>
+        </div>
 
 
     </main>
@@ -530,57 +639,101 @@
                     });
             });
         });
-// Fetch mechanic details on page load
-document.addEventListener("DOMContentLoaded", function () {
-    const mechanicNameElement = document.getElementById("mechanic-name");
-    
-    // Get mobile number from local storage (assuming it's stored during login)
-    const mobileNumber = localStorage.getItem("mechanicMobileNumber");
+        // Fetch mechanic details on page load
+        document.addEventListener("DOMContentLoaded", function () {
+            const mechanicNameElement = document.getElementById("mechanic-name");
 
-    // Fetch mechanic's details from the backend API
-    fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
+            // Get mobile number from local storage (assuming it's stored during login)
+            const mobileNumber = localStorage.getItem("mechanicMobileNumber");
+
+            // Fetch mechanic's details from the backend API
+            fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update the mechanic's name dynamically
+                        const mechanicName = data.mechanic.name;
+                        mechanicNameElement.textContent = `Welcome, ${mechanicName}!`;
+                    } else {
+                        console.error("Failed to fetch mechanic details:", data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching mechanic details:", error);
+                });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the HTML element where you want to display the welcome message
+            const welcomeMessageElement = document.getElementById("welcome-message");
+
+            // Get the mobile number from local storage (assuming it's stored after login)
+            const mobileNumber = localStorage.getItem("loggedInMechanicMobile");
+
+            // Check if the mobile number is available in localStorage
+            if (mobileNumber) {
+                // Fetch the mechanic's details from the backend
+                fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Get the mechanic's name
+                            const mechanicName = data.mechanic.name;
+                            // Update the welcome message
+                            welcomeMessageElement.textContent = `Welcome, ${mechanicName}!`;
+                        } else {
+                            console.error("Failed to fetch mechanic details:", data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching mechanic details:", error);
+                    });
+            } else {
+                console.error("Mechanic mobile number not found in localStorage.");
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+    const availabilityToggle = document.getElementById("availability-toggle");
+    const statusLabel = document.getElementById("status-label");
+
+    // Check localStorage for previous status and set the toggle state and label accordingly
+    const mechanicStatus = localStorage.getItem("mechanicStatus") || "offline";
+    availabilityToggle.checked = mechanicStatus === "online";
+    statusLabel.textContent = mechanicStatus === "online" ? "Online" : "Offline"; // Correctly set initial status label
+
+    // Event listener for the toggle switch
+    availabilityToggle.addEventListener("change", function () {
+        const newStatus = this.checked ? "online" : "offline"; // Determine new status based on toggle state
+        statusLabel.textContent = this.checked ? "Online" : "Offline"; // Update label based on toggle state
+
+        // Update mechanic status in the backend
+        fetch('/api/update-mechanic-status', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+            },
+            body: JSON.stringify({ status: newStatus })
+        })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Update the mechanic's name dynamically
-                const mechanicName = data.mechanic.name;
-                mechanicNameElement.textContent = `Welcome, ${mechanicName}!`;
+                console.log("Mechanic status updated successfully.");
+                // Update status in local storage
+                localStorage.setItem("mechanicStatus", newStatus);
             } else {
-                console.error("Failed to fetch mechanic details:", data.message);
+                console.error("Failed to update mechanic status:", data.message);
+                // Optionally revert the toggle state if the update failed
+                availabilityToggle.checked = !this.checked; // Revert toggle
+                statusLabel.textContent = this.checked ? "Online" : "Offline"; // Correct label based on reverted toggle
             }
         })
         .catch(error => {
-            console.error("Error fetching mechanic details:", error);
+            console.error("Error updating mechanic status:", error);
+            // Revert the toggle state in case of an error
+            availabilityToggle.checked = !this.checked; // Revert toggle
+            statusLabel.textContent = this.checked ? "Online" : "Offline"; // Correct label based on reverted toggle
         });
-});
-document.addEventListener("DOMContentLoaded", function () {
-    // Get the HTML element where you want to display the welcome message
-    const welcomeMessageElement = document.getElementById("welcome-message");
-
-    // Get the mobile number from local storage (assuming it's stored after login)
-    const mobileNumber = localStorage.getItem("loggedInMechanicMobile");
-
-    // Check if the mobile number is available in localStorage
-    if (mobileNumber) {
-        // Fetch the mechanic's details from the backend
-        fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Get the mechanic's name
-                    const mechanicName = data.mechanic.name;
-                    // Update the welcome message
-                    welcomeMessageElement.textContent = `Welcome, ${mechanicName}!`;
-                } else {
-                    console.error("Failed to fetch mechanic details:", data.message);
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching mechanic details:", error);
-            });
-    } else {
-        console.error("Mechanic mobile number not found in localStorage.");
-    }
+    });
 });
 
 

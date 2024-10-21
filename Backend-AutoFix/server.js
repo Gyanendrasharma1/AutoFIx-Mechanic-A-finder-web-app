@@ -144,6 +144,26 @@ app.get('/get-mechanic-data', (req, res) => {
         }
     });
 });
+// Endpoint to update mechanic status
+app.post('/api/update-mechanic-status', (req, res) => {
+    const { status } = req.body; // Get the status from the request body
+    const mobileNumber = req.user.mobile; // Assuming you have user authentication to get mobile number
+
+    // Validate the status
+    if (status !== 'online' && status !== 'offline') {
+        return res.status(400).json({ success: false, message: 'Invalid status' });
+    }
+
+    // Update the mechanic's status in the database
+    const query = 'UPDATE mechanics SET availability = ? WHERE mobileNumber = ?'; // Adjust column name if necessary
+    db.query(query, [status, mobileNumber], (error, results) => {
+        if (error) {
+            return res.status(500).json({ success: false, message: 'Database error' });
+        }
+
+        return res.json({ success: true, message: 'Status updated successfully' });
+    });
+});
 
 // Serve the landing page (only if user is logged in)
 app.get('/landing-page', (req, res) => {
