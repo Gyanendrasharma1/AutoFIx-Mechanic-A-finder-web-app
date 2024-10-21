@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,250 +17,347 @@
         /* Body Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4; /* Light background color */
-            color: #333; /* Dark text color */
+            background-color: #f4f4f4;
+            /* Light background color */
+            color: #333;
+            /* Dark text color */
         }
 
         /* Header Styles */
         .header-container {
-            background-color: #000000; /* Blue background */
-            color: #ffffff; /* White text */
+            background-color: #000000;
+            /* Blue background */
+            color: #ffffff;
+            /* White text */
             padding: 15px;
             display: flex;
-            align-items: center; /* Center the text vertically */
-           
-            height: 60px; /* Fixed height */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow */
-            position: fixed; /* Fix position at the top */
-            width: 100%; /* Full width */
-            z-index: 1000; /* Keep it on top */
+            align-items: center;
+            /* Center the text vertically */
+
+            height: 60px;
+            /* Fixed height */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Slight shadow */
+            position: fixed;
+            /* Fix position at the top */
+            width: 100%;
+            /* Full width */
+            z-index: 1000;
+            /* Keep it on top */
         }
 
+
         .header-container h1 {
-            font-size: 30px; /* Font size */
-            font-weight: bold; /* Bold text */
+            font-size: 30px;
+            /* Font size */
+            font-weight: bold;
+            /* Bold text */
             margin-left: 0px;
         }
-        .header-container p{
-            margin-top: 10px;
+
+        .header-container p {
+            margin-top: 30px;
             margin-left: 0px;
             font-weight: bold;
             font-size: 15px;
-            color:#007bff ;
+            color: #007bff;
+            margin-right: 1000px;
         }
 
- /* Toggle Button Container */
- .toggle-button-container {
-            background-color: #ffffff; /* White background */
-            height: 60px; /* Increased height */
-            width: 100%; /* Full width */
-            display: flex; /* Use flexbox for centering */
-            align-items: center; /* Center items vertically */
-            position: fixed; /* Fix position at the top */
-            top: 60px; /* Below the header */
+        /* Toggle Button Container */
+        .toggle-button-container {
+            margin-left: 0px;
+            height: 60px;
+            /* Increased height */
+            width: 100%;
+            /* Full width */
+            display: flex;
+            /* Use flexbox for centering */
+            align-items: center;
+            /* Center items vertically */
+            position: fixed;
+            /* Fix position at the top */
+            top: 60px;
+            /* Below the header */
         }
 
         /* Toggle Button Styles */
         #toggle-button {
-            background-color: #feffff;
-            color: #000000; /* Black text */
+            background-color: transparent;
+            color: #000000;
+            /* Black text */
             border: none;
-            padding: 0; /* Remove padding */
-            height: 100%; /* Match button height to container */
-            width: 60px; /* Fixed width for the button */
-            cursor: pointer; /* Pointer cursor */
-            font-size: 24px; /* Font size */
-            margin-left: 0; /* No margin on the left */
+            margin-left: 0%;
+            padding: 0;
+            /* Remove padding */
+            height: 100%;
+            /* Match button height to container */
+            width: 60px;
+            /* Fixed width for the button */
+            cursor: pointer;
+            /* Pointer cursor */
+            font-size: 24px;
+            /* Font size */
+            margin-left: 0;
+            /* No margin on the left */
             font-weight: bold;
+
         }
 
         /* Navigation Bar Styles */
         .nav-bar {
-            width: 250px; /* Width of the sidebar */
-            background-color: #000000; /* Blue background */
-            height: 100%; /* Full height */
-            position: fixed; /* Fix position on the left */
-            top: 60px; /* Below the toggle button */
-            left: -250px; /* Start off-screen */
-            transition: left 0.3s ease; /* Slide transition */
-            z-index: 999; /* Just below the header */
+            width: 250px;
+            /* Width of the sidebar */
+            background-color: #000000;
+            /* Blue background */
+            height: 100%;
+            /* Full height */
+            position: fixed;
+            /* Fix position on the left */
+            top: 60px;
+            /* Below the toggle button */
+            left: -250px;
+            /* Start off-screen */
+            transition: left 0.3s ease;
+            /* Slide transition */
+            z-index: 999;
+            /* Just below the header */
             margin-top: 0.5px;
         }
 
         .nav-bar.active {
-            left: 0; /* Slide in */
+            left: 0;
+            /* Slide in */
         }
 
         .nav-bar a {
-            display: block; /* Stack links vertically */
-            color: rgb(253, 253, 253); /* White text */
-            padding: 15px 20px; /* Padding for links */
-            text-decoration: none; /* Remove underline */
-            font-size: 18px; /* Font size for links */
+            display: block;
+            /* Stack links vertically */
+            color: rgb(253, 253, 253);
+            /* White text */
+            padding: 15px 20px;
+            /* Padding for links */
+            text-decoration: none;
+            /* Remove underline */
+            font-size: 18px;
+            /* Font size for links */
         }
 
         .nav-bar a:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
+            /* Darker blue on hover */
         }
-         /* Close Button */
-         .close-button {
+
+        /* Close Button */
+        .close-button {
             background: none;
             border: none;
             color: rgb(255, 255, 255);
             font-size: 24px;
-            align-self: flex-end; /* Position close button at the top right */
-           
-            cursor: pointer; /* Pointer cursor */
+            align-self: flex-end;
+            /* Position close button at the top right */
+
+            cursor: pointer;
+            /* Pointer cursor */
             margin-left: 0px;
 
             font-weight: bold;
         }
-        /* Profile Picture Styles */
-.profile-picture {
-    width: 40px; /* Width of the circle */
-    height: 40px; /* Height of the circle */
-    border-radius: 50%; /* Makes it circular */
-    overflow: hidden; /* Ensures image doesn't overflow */
-    border: 2px solid #ffffff; /* White border */
-    position: absolute; /* Position it in the header */
-    right: 40px; /* Distance from the right edge */
-    top: 10px; /* Distance from the top edge */
+
+        /* Profile Popup Styles */
+        .profile-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            /* Darker semi-transparent background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            /* Above other elements */
+        }
+
+        .popup-content {
+            background: #ffffff;
+            /* White background */
+            padding: 40px;
+            /* Increased padding */
+            border-radius: 12px;
+            /* Rounded corners */
+            width: 90%;
+            max-width: 500px;
+            /* Increased maximum width for larger screens */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            /* Deeper shadow for a more pronounced effect */
+            position: relative;
+            /* Positioning for close button */
+            animation: slideIn 0.5s ease-out;
+            /* Slide-in animation */
+        }
+
+        /* Slide-in Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+                /* Slide in from above */
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                /* Slide to original position */
+            }
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            /* Positioning for close button */
+            right: 20px;
+            /* Positioning for close button */
+            font-size: 28px;
+            /* Larger close button */
+            cursor: pointer;
+            /* Pointer cursor */
+            color: #333;
+            /* Dark color */
+            transition: color 0.3s, transform 0.3s;
+            /* Smooth color and scale transition */
+        }
+
+        .close-popup:hover {
+            color: #ff0000;
+            /* Change color on hover */
+            transform: scale(1.2);
+            /* Slightly increase size on hover */
+        }
+
+        h2 {
+            text-align: center;
+            /* Center the title */
+            color: #007bff;
+            /* Blue color for title */
+            margin-bottom: 20px;
+            /* Space below the title */
+            font-size: 26px;
+            /* Larger title font size */
+            letter-spacing: 1px;
+            /* Increased letter spacing for title */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            /* Soft shadow for title */
+        }
+
+        p {
+            margin: 15px 0;
+            /* Space between paragraphs */
+            font-size: 18px;
+            /* Paragraph font size */
+            color: #555;
+            /* Slightly lighter color for text */
+            line-height: 1.5;
+            /* Improved line height for readability */
+        }
+
+        strong {
+            color: #007bff;
+            /* Blue color for strong text */
+            font-weight: 600;
+            /* Bold weight for strong text */
+        }
+
+        /* Subtle pulse animation for profile data */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+                /* Slightly enlarge */
+            }
+        }
+
+        span {
+            display: inline-block;
+            /* To apply pulse effect */
+            animation: pulse 2s infinite;
+            /* Pulse animation */
+        }
+        .welcome-message {
+    font-size: 26px; /* Font size for visibility */
+    color: #333; /* Dark text color */
+    text-align: center; /* Center the text */
+    margin-top: 50px; /* Space above the message */
+    opacity: 0; /* Start hidden */
+    transform: translateY(10px); /* Initial position slightly down */
+    animation: fadeInUp 0.5s forwards; /* Shorter fade-in animation */
+    font-weight: bold;
 }
 
-.profile-picture img {
-    width: 100%; /* Fill the container */
-    height: 100%; /* Fill the container */
-    object-fit: cover; /* Crop image to fit */
-}
-
-/* Profile Popup Styles */
-.profile-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9); /* Darker semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1001; /* Above other elements */
-}
-
-.popup-content {
-    background: #ffffff; /* White background */
-    padding: 40px; /* Increased padding */
-    border-radius: 12px; /* Rounded corners */
-    width: 90%;
-    max-width: 500px; /* Increased maximum width for larger screens */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25); /* Deeper shadow for a more pronounced effect */
-    position: relative; /* Positioning for close button */
-    animation: slideIn 0.5s ease-out; /* Slide-in animation */
-}
-
-/* Slide-in Animation */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-30px); /* Slide in from above */
+/* Keyframes for the animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0; /* Start invisible */
+        transform: translateY(10px); /* Move up slightly */
     }
-    to {
-        opacity: 1;
-        transform: translateY(0); /* Slide to original position */
+    100% {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Return to original position */
     }
-}
-
-.close-popup {
-    position: absolute;
-    top: 15px; /* Positioning for close button */
-    right: 20px; /* Positioning for close button */
-    font-size: 28px; /* Larger close button */
-    cursor: pointer; /* Pointer cursor */
-    color: #333; /* Dark color */
-    transition: color 0.3s, transform 0.3s; /* Smooth color and scale transition */
-}
-
-.close-popup:hover {
-    color: #ff0000; /* Change color on hover */
-    transform: scale(1.2); /* Slightly increase size on hover */
-}
-
-h2 {
-    text-align: center; /* Center the title */
-    color: #007bff; /* Blue color for title */
-    margin-bottom: 20px; /* Space below the title */
-    font-size: 26px; /* Larger title font size */
-    letter-spacing: 1px; /* Increased letter spacing for title */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Soft shadow for title */
-}
-
-p {
-    margin: 15px 0; /* Space between paragraphs */
-    font-size: 18px; /* Paragraph font size */
-    color: #555; /* Slightly lighter color for text */
-    line-height: 1.5; /* Improved line height for readability */
-}
-
-strong {
-    color: #007bff; /* Blue color for strong text */
-    font-weight: 600; /* Bold weight for strong text */
-}
-
-/* Subtle pulse animation for profile data */
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.03); /* Slightly enlarge */
-    }
-}
-
-span {
-    display: inline-block; /* To apply pulse effect */
-    animation: pulse 2s infinite; /* Pulse animation */
 }
 
     </style>
 </head>
-<body> <header>
-    <div class="header-container">
-        <h1>AutoFix</h1> <!-- Company Name -->
-        <p>Mechanic</p>
-        <div class="profile-picture">
-            <img src="default-avatar.png" alt="Mechanic Profile" id="mechanic-profile">
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1>AutoFix</h1> <!-- Company Name -->
+            <p>Mechanic</p>
+
         </div>
-    </div>
 
-    <div class="toggle-button-container">
-        <button id="toggle-button">☰</button> <!-- Toggle Button -->
-    </div>
-    <nav class="nav-bar" id="nav-bar">
-       
-        <a href="#profile">Profile</a>
-        <a href="#">Bookings</a>
-        <a href="#">Payment History</a>
-        <a href="#">Ratings</a>
-        <a href="#" id="logout-button">Logout</a>
-        <button class="close-button" id="close-button">Close</button> <!-- Close Button -->
-    </nav>
-</header>
+        <div class="toggle-button-container">
+            <button id="toggle-button">☰</button> <!-- Toggle Button -->
+        </div>
+        <nav class="nav-bar" id="nav-bar">
+
+            <a href="#profile">Profile</a>
+            <a href="#">Bookings</a>
+            <a href="#">Payment History</a>
+            <a href="#">Ratings</a>
+            <a href="#" id="logout-button">Logout</a>
+            <button class="close-button" id="close-button">Close</button> <!-- Close Button -->
+        </nav>
+    </header>
+
+    <main>
+        <div id="welcome-message" class="welcome-message">
+    <h1>Welcome, <span id="mechanic-name"></span>!</h1>
+</div>
 
 
+    </main>
 
     <!-- Profile Popup -->
-<div id="profilePopup" class="profile-popup" style="display: none;">
-    <div class="popup-content">
-        <span class="close-popup" id="closeProfilePopup">&times;</span>
-        <h2>Mechanic Profile</h2>
-        <p><strong>Full Name:</strong> <span id="profileName"></span></p>
-        <p><strong>Email:</strong> <span id="profileEmail"></span></p>
-        <p><strong>Mobile Number:</strong> <span id="profileMobile"></span></p>
-        <p><strong>Experience:</strong> <span id="profileExperience"></span> years</p>
-        <p><strong>Availability:</strong> <span id="profileAvailability"></span></p>
-     
+    <div id="profilePopup" class="profile-popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close-popup" id="closeProfilePopup">&times;</span>
+            <h2>Mechanic Profile</h2>
+            <p><strong>Full Name:</strong> <span id="profileName"></span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <p><strong>Mobile Number:</strong> <span id="profileMobile"></span></p>
+            <p><strong>Experience:</strong> <span id="profileExperience"></span> years</p>
+            <p><strong>Availability:</strong> <span id="profileAvailability"></span></p>
+
+        </div>
     </div>
-</div>
 
 
 
@@ -268,99 +366,227 @@ span {
 
     <script>
 
-// Logout function
-document.getElementById('logout-button').addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent default anchor behavior
-    const confirmLogout = confirm("Are you sure you want to logout?"); // Show confirmation dialog
+        // Logout function
+        document.getElementById('logout-button').addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            const confirmLogout = confirm("Are you sure you want to logout?"); // Show confirmation dialog
 
-    if (confirmLogout) {
-        // Clear localStorage
-        localStorage.removeItem('mechanicData'); // Adjust the key based on your storage
-        // Redirect to the login page (or index.html)
-        window.location.href = 'index.html'; // Change this to your login page
-    }
-});
-        
-          // Toggle navigation visibility
-          const navBar = document.getElementById('nav-bar');
+            if (confirmLogout) {
+                // Clear localStorage
+                localStorage.removeItem('mechanicData'); // Adjust the key based on your storage
+                // Redirect to the login page (or index.html)
+                window.location.href = 'index.html'; // Change this to your login page
+            }
+        });
+
+        // Toggle navigation visibility
+        const navBar = document.getElementById('nav-bar');
         const toggleButton = document.getElementById('toggle-button');
         const closeButton = document.getElementById('close-button');
 
-        toggleButton.addEventListener('click', function() {
+        toggleButton.addEventListener('click', function () {
             navBar.classList.toggle('active'); // Toggle the 'active' class to slide in/out
         });
 
-        closeButton.addEventListener('click', function() {
+        closeButton.addEventListener('click', function () {
             navBar.classList.remove('active'); // Remove the 'active' class to slide out
         });
 
-      
+
         // code for profile pop pop
         document.addEventListener('DOMContentLoaded', function () {
-    const profileLink = document.querySelector('a[href="#profile"]');
-    const profilePopup = document.getElementById('profilePopup');
-    const closeProfilePopup = document.getElementById('closeProfilePopup');
+            const profileLink = document.querySelector('a[href="#profile"]');
+            const profilePopup = document.getElementById('profilePopup');
+            const closeProfilePopup = document.getElementById('closeProfilePopup');
 
-    // Function to open the profile popup
-    function openProfilePopup() {
-        fetchMechanicData(); // Fetch mechanic data when the profile link is clicked
-        profilePopup.style.display = 'flex'; // Show the profile popup
-    }
+            // Function to open the profile popup
+            function openProfilePopup() {
+                fetchMechanicData(); // Fetch mechanic data when the profile link is clicked
+                profilePopup.style.display = 'flex'; // Show the profile popup
+            }
 
-    // Function to close the profile popup
-    closeProfilePopup.addEventListener('click', function () {
-        profilePopup.style.display = 'none'; // Hide the profile popup
-    });
+            // Function to close the profile popup
+            closeProfilePopup.addEventListener('click', function () {
+                profilePopup.style.display = 'none'; // Hide the profile popup
+            });
 
-    // Fetch mechanic data from the backend based on the mobile number
-    function fetchMechanicData() {
-        const mobileNumber = localStorage.getItem('loggedInMechanicMobile');
-        if (!mobileNumber) {
-            console.error('Mobile number not found in localStorage');
-            return; // Prevent fetching data if the mobile number is null
-        }
+            // Fetch mechanic data from the backend based on the mobile number
+            function fetchMechanicData() {
+                const mobileNumber = localStorage.getItem('loggedInMechanicMobile');
+                if (!mobileNumber) {
+                    console.error('Mobile number not found in localStorage');
+                    return; // Prevent fetching data if the mobile number is null
+                }
 
+                fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update the profile popup with mechanic data
+                            document.getElementById('profileName').textContent = data.mechanic.name;
+                            document.getElementById('profileEmail').textContent = data.mechanic.email;
+                            document.getElementById('profileMobile').textContent = data.mechanic.mobile;
+                            document.getElementById('profileExperience').textContent = data.mechanic.experience;
+                            document.getElementById('profileAvailability').textContent = data.mechanic.availability ? 'Available' : 'Unavailable';
+                        } else {
+                            console.error('Failed to fetch mechanic data');
+                        }
+                    })
+                    .catch(error => console.error('Error fetching mechanic data:', error));
+            }
+
+            // Event listener for the profile link (make sure your profile link has the right ID or class)
+            profileLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                openProfilePopup();
+            });
+
+            // Optional: Close the modal when clicking outside of it
+            window.addEventListener('click', function (event) {
+                if (event.target === profilePopup) {
+                    profilePopup.style.display = 'none';
+                }
+            });
+
+            // Event listener for the profile link
+            profileLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                openProfilePopup();
+            });
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const mechanicNameElement = document.getElementById("mechanic-name");
+            const statusLabel = document.getElementById("status-label");
+            const availabilityToggle = document.getElementById("availability-toggle");
+
+            // Fetch the mechanic's details from the backend API
+            fetch('/api/get-mechanic-details', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Include any necessary authorization headers, like a token
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update the mechanic's name dynamically
+                        const mechanicName = data.mechanic.name;
+                        mechanicNameElement.textContent = mechanicName;
+
+                        // Set the mechanic's initial status based on data from the backend
+                        const mechanicStatus = data.mechanic.status; // e.g., 'online' or 'offline'
+                        if (mechanicStatus === "online") {
+                            availabilityToggle.checked = true;
+                            statusLabel.textContent = "Online";
+                        } else {
+                            availabilityToggle.checked = false;
+                            statusLabel.textContent = "Offline";
+                        }
+                    } else {
+                        // Handle error if fetching data failed
+                        console.error("Failed to fetch mechanic details:", data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching mechanic details:", error);
+                });
+
+            // Event listener for the toggle switch
+            availabilityToggle.addEventListener("change", function () {
+                const newStatus = this.checked ? "online" : "offline";
+                statusLabel.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+
+                // Update mechanic status in the backend
+                fetch('/api/update-mechanic-status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log("Mechanic status updated successfully.");
+                            // Update status in local storage
+                            localStorage.setItem("mechanicStatus", newStatus);
+                        } else {
+                            console.error("Failed to update mechanic status:", data.message);
+                            // Optionally revert the toggle state if the update failed
+                            availabilityToggle.checked = !this.checked;
+                            statusLabel.textContent = this.checked ? "Offline" : "Online";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error updating mechanic status:", error);
+                        // Revert the toggle state in case of an error
+                        availabilityToggle.checked = !this.checked;
+                        statusLabel.textContent = this.checked ? "Offline" : "Online";
+                    });
+            });
+        });
+// Fetch mechanic details on page load
+document.addEventListener("DOMContentLoaded", function () {
+    const mechanicNameElement = document.getElementById("mechanic-name");
+    
+    // Get mobile number from local storage (assuming it's stored during login)
+    const mobileNumber = localStorage.getItem("mechanicMobileNumber");
+
+    // Fetch mechanic's details from the backend API
+    fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update the mechanic's name dynamically
+                const mechanicName = data.mechanic.name;
+                mechanicNameElement.textContent = `Welcome, ${mechanicName}!`;
+            } else {
+                console.error("Failed to fetch mechanic details:", data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching mechanic details:", error);
+        });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the HTML element where you want to display the welcome message
+    const welcomeMessageElement = document.getElementById("welcome-message");
+
+    // Get the mobile number from local storage (assuming it's stored after login)
+    const mobileNumber = localStorage.getItem("loggedInMechanicMobile");
+
+    // Check if the mobile number is available in localStorage
+    if (mobileNumber) {
+        // Fetch the mechanic's details from the backend
         fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Update the profile popup with mechanic data
-                    document.getElementById('profileName').textContent = data.mechanic.name;
-                    document.getElementById('profileEmail').textContent = data.mechanic.email;
-                    document.getElementById('profileMobile').textContent = data.mechanic.mobile;
-                    document.getElementById('profileExperience').textContent = data.mechanic.experience;
-                    document.getElementById('profileAvailability').textContent = data.mechanic.availability ? 'Available' : 'Unavailable';
+                    // Get the mechanic's name
+                    const mechanicName = data.mechanic.name;
+                    // Update the welcome message
+                    welcomeMessageElement.textContent = `Welcome, ${mechanicName}!`;
                 } else {
-                    console.error('Failed to fetch mechanic data');
+                    console.error("Failed to fetch mechanic details:", data.message);
                 }
             })
-            .catch(error => console.error('Error fetching mechanic data:', error));
-    }
-
-    // Event listener for the profile link (make sure your profile link has the right ID or class)
-    profileLink.addEventListener('click', function (e) {
-        e.preventDefault();
-        openProfilePopup();
-    });
-
-    // Optional: Close the modal when clicking outside of it
-    window.addEventListener('click', function (event) {
-        if (event.target === profilePopup) {
-            profilePopup.style.display = 'none';
-        }
-    });
-
-      // Event listener for the profile link
-      profileLink.addEventListener('click', function (e) {
-                e.preventDefault();
-                openProfilePopup();
+            .catch(error => {
+                console.error("Error fetching mechanic details:", error);
             });
-       
-});  
+    } else {
+        console.error("Mechanic mobile number not found in localStorage.");
+    }
+});
 
 
 
     </script>
 
 </body>
+
 </html>
