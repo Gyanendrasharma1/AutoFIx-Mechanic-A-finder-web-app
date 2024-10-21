@@ -139,40 +139,86 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.9); /* Darker semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1001; /* Above the nav-bar */
+    z-index: 1001; /* Above other elements */
 }
 
 .popup-content {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 300px;
-    max-width: 90%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
+    background: #ffffff; /* White background */
+    padding: 40px; /* Increased padding */
+    border-radius: 12px; /* Rounded corners */
+    width: 90%;
+    max-width: 500px; /* Increased maximum width for larger screens */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25); /* Deeper shadow for a more pronounced effect */
+    position: relative; /* Positioning for close button */
+    animation: slideIn 0.5s ease-out; /* Slide-in animation */
+}
+
+/* Slide-in Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px); /* Slide in from above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Slide to original position */
+    }
 }
 
 .close-popup {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 18px;
-    cursor: pointer;
-    color: #333;
+    top: 15px; /* Positioning for close button */
+    right: 20px; /* Positioning for close button */
+    font-size: 28px; /* Larger close button */
+    cursor: pointer; /* Pointer cursor */
+    color: #333; /* Dark color */
+    transition: color 0.3s, transform 0.3s; /* Smooth color and scale transition */
 }
 
-.popup-profile-photo {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    display: block;
-    margin: 10px auto;
+.close-popup:hover {
+    color: #ff0000; /* Change color on hover */
+    transform: scale(1.2); /* Slightly increase size on hover */
 }
 
+h2 {
+    text-align: center; /* Center the title */
+    color: #007bff; /* Blue color for title */
+    margin-bottom: 20px; /* Space below the title */
+    font-size: 26px; /* Larger title font size */
+    letter-spacing: 1px; /* Increased letter spacing for title */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Soft shadow for title */
+}
+
+p {
+    margin: 15px 0; /* Space between paragraphs */
+    font-size: 18px; /* Paragraph font size */
+    color: #555; /* Slightly lighter color for text */
+    line-height: 1.5; /* Improved line height for readability */
+}
+
+strong {
+    color: #007bff; /* Blue color for strong text */
+    font-weight: 600; /* Bold weight for strong text */
+}
+
+/* Subtle pulse animation for profile data */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03); /* Slightly enlarge */
+    }
+}
+
+span {
+    display: inline-block; /* To apply pulse effect */
+    animation: pulse 2s infinite; /* Pulse animation */
+}
 
     </style>
 </head>
@@ -194,7 +240,7 @@
         <a href="#">Bookings</a>
         <a href="#">Payment History</a>
         <a href="#">Ratings</a>
-        <a href="#">Logout</a>
+        <a href="#" id="logout-button">Logout</a>
         <button class="close-button" id="close-button">Close</button> <!-- Close Button -->
     </nav>
 
@@ -215,9 +261,25 @@
 </div>
 
 
+
+
     <!-- Your content will go here -->
 
     <script>
+
+// Logout function
+document.getElementById('logout-button').addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent default anchor behavior
+    const confirmLogout = confirm("Are you sure you want to logout?"); // Show confirmation dialog
+
+    if (confirmLogout) {
+        // Clear localStorage
+        localStorage.removeItem('mechanicData'); // Adjust the key based on your storage
+        // Redirect to the login page (or index.html)
+        window.location.href = 'index.html'; // Change this to your login page
+    }
+});
+        
           // Toggle navigation visibility
           const navBar = document.getElementById('nav-bar');
         const toggleButton = document.getElementById('toggle-button');
@@ -231,16 +293,7 @@
             navBar.classList.remove('active'); // Remove the 'active' class to slide out
         });
 
-        // Close navigation when clicking outside of it
-        document.addEventListener('click', function(event) {
-            const isClickInsideNav = navBar.contains(event.target);
-            const isClickInsideToggle = toggleButton.contains(event.target);
-            
-            if (!isClickInsideNav && !isClickInsideToggle) {
-                navBar.classList.remove('active'); // Close the nav bar if clicking outside
-            }
-        });
-
+      
         // code for profile pop pop
         document.addEventListener('DOMContentLoaded', function () {
     const profileLink = document.querySelector('a[href="#profile"]');
@@ -295,10 +348,17 @@
             profilePopup.style.display = 'none';
         }
     });
-});
+
+      // Event listener for the profile link
+      profileLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                openProfilePopup();
+            });
+       
+});  
 
 
-      
+
     </script>
 
 </body>
