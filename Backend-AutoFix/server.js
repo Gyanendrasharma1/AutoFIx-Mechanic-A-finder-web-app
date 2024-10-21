@@ -110,6 +110,40 @@ app.post('/submit-mechanic', upload.single('profilePhoto'), (req, res) => {
         res.send('Mechanic registration successful!');
     });
 });
+// Endpoint to fetch mechanic data based on mobile number
+app.get('/get-mechanic-data', (req, res) => {
+    const mobileNumber = req.query.mobile;
+
+    if (!mobileNumber) {
+        return res.status(400).json({ success: false, message: 'Mobile number is required.' });
+    }
+
+    const sql = 'SELECT full_name, email, mobileNumber, experience, availability FROM mechanics WHERE mobileNumber = ?';
+    db.query(sql, [mobileNumber], (err, results) => {
+        if (err) {
+            console.error('Error fetching mechanic data:', err);
+            return res.status(500).json({ success: false, message: 'Error fetching mechanic data.' });
+        }
+
+        if (results.length > 0) {
+            // Mechanic found, return data
+            const mechanic = results[0];
+            res.json({
+                success: true,
+                mechanic: {
+                    name: mechanic.full_name,
+                    email: mechanic.email,
+                    mobile: mechanic.mobileNumber,
+                    experience: mechanic.experience,
+                    availability: mechanic.availability
+                }
+            });
+        } else {
+            // Mechanic not found
+            res.status(404).json({ success: false, message: 'Mechanic not found.' });
+        }
+    });
+});
 
 // Serve the landing page (only if user is logged in)
 app.get('/landing-page', (req, res) => {

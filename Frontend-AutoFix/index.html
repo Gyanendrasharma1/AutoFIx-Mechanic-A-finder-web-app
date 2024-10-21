@@ -547,10 +547,14 @@ document.addEventListener("DOMContentLoaded", function() {
         const enteredOtp = otpInput.value.trim();
         const storedOtp = localStorage.getItem('otp');
         const isNewMechanic = localStorage.getItem('isNewMechanic') === 'true'; // Retrieve mechanic status
+        const mobileNumber = localStorage.getItem('mobileNumber'); // Retrieve the mobile number
 
         // Check if the entered OTP matches the stored OTP
         if (enteredOtp === storedOtp) {
             alert('OTP verified successfully.');
+
+            // Save the mechanic's mobile number for later use
+            localStorage.setItem('loggedInMechanicMobile', mobileNumber);
 
             // Redirect based on mechanic status
             if (isNewMechanic) {

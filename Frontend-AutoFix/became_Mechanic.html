@@ -242,6 +242,61 @@
         });
 
         // code for profile pop pop
+        document.addEventListener('DOMContentLoaded', function () {
+    const profileLink = document.querySelector('a[href="#profile"]');
+    const profilePopup = document.getElementById('profilePopup');
+    const closeProfilePopup = document.getElementById('closeProfilePopup');
+
+    // Function to open the profile popup
+    function openProfilePopup() {
+        fetchMechanicData(); // Fetch mechanic data when the profile link is clicked
+        profilePopup.style.display = 'flex'; // Show the profile popup
+    }
+
+    // Function to close the profile popup
+    closeProfilePopup.addEventListener('click', function () {
+        profilePopup.style.display = 'none'; // Hide the profile popup
+    });
+
+    // Fetch mechanic data from the backend based on the mobile number
+    function fetchMechanicData() {
+        const mobileNumber = localStorage.getItem('loggedInMechanicMobile');
+        if (!mobileNumber) {
+            console.error('Mobile number not found in localStorage');
+            return; // Prevent fetching data if the mobile number is null
+        }
+
+        fetch(`/get-mechanic-data?mobile=${mobileNumber}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the profile popup with mechanic data
+                    document.getElementById('profileName').textContent = data.mechanic.name;
+                    document.getElementById('profileEmail').textContent = data.mechanic.email;
+                    document.getElementById('profileMobile').textContent = data.mechanic.mobile;
+                    document.getElementById('profileExperience').textContent = data.mechanic.experience;
+                    document.getElementById('profileAvailability').textContent = data.mechanic.availability ? 'Available' : 'Unavailable';
+                } else {
+                    console.error('Failed to fetch mechanic data');
+                }
+            })
+            .catch(error => console.error('Error fetching mechanic data:', error));
+    }
+
+    // Event listener for the profile link (make sure your profile link has the right ID or class)
+    profileLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        openProfilePopup();
+    });
+
+    // Optional: Close the modal when clicking outside of it
+    window.addEventListener('click', function (event) {
+        if (event.target === profilePopup) {
+            profilePopup.style.display = 'none';
+        }
+    });
+});
+
 
       
     </script>
