@@ -410,6 +410,217 @@
             margin-top: 1px;
             font-weight: bold;
         }
+        .notification-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 450px;
+    margin: 50px auto;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.notification-container:hover {
+    transform: translateY(-3px);
+}
+
+h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+#booking-status {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Additional styling for a button */
+.button {
+    display: inline-block;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: #45a049; /* Darker green */
+    transform: translateY(-2px);
+}
+
+.button:focus {
+    outline: none;
+}
+
+.empty-message {
+    font-size: 16px;
+    color: #888;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Centering and background for the booking history container */
+#booking-history-container {
+    position: fixed;
+    top: 15%; /* 15% margin from the top */
+    left: 50%;
+    transform: translate(-50%, 0); /* Only horizontal centering */
+    width: 50%; /* 50% of the screen width */
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none; /* Initially hidden */
+    animation: slideIn 0.4s ease-in-out;
+    max-height: 70vh; /* Limit height to 70% of the viewport */
+    overflow-y: auto; /* Scroll if content exceeds height */
+}
+
+/* Animation for sliding the container from the top */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -10%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* Close button styling */
+#booking-history-container .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+#booking-history-container .close-button:hover {
+    color: #e74c3c;
+}
+
+/* Updated colors based on the website theme */
+:root {
+    --primary-bg: #f0f4f8; /* Light background */
+    --primary-accent: #004080; /* Accent color for headings */
+    --secondary-accent: #0080c0; /* Lighter accent color */
+    --text-dark: #333333; /* Dark text color */
+    --light-border: #e0e0e0; /* Light border color */
+}
+
+/* Centering and styling the booking history container */
+#booking-history-container {
+    position: fixed;
+    top: 15%; 
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 50%; 
+    max-width: 600px;
+    background-color: var(--primary-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: none;
+    animation: slideIn 0.4s ease-in-out;
+    max-height: 70vh;
+    overflow-y: auto;
+    border: 1px solid var(--light-border);
+}
+
+/* Close button */
+#booking-history-container .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--primary-accent);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#booking-history-container .close-button:hover {
+    color: var(--secondary-accent);
+}
+
+/* Booking item styling */
+.booking-item {
+    
+    background-color: #ffffff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--primary-accent);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform 0.3s ease;
+}
+
+.booking-item:hover {
+    transform: translateY(-5px);
+    background-color: #000000;
+}
+
+/* Text styles */
+.booking-item h3 {
+    color: var(--primary-accent);
+    font-size: 18px;
+    margin: 0;
+}
+
+.booking-item p {
+    color: var(--text-dark);
+    margin: 4px 0;
+}
+
+.booking-item .status {
+    color: var(--secondary-accent);
+    font-weight: bold;
+}
+
+/* Overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+/* Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -10%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
        
     </style>
 </head>
@@ -434,7 +645,7 @@
                 
             </div>
             <a href="#profile">Profile</a>
-            <a href="#">Bookings</a>
+            <a href="#" id="bookings-link">Bookings</a> 
             <a href="#">Payment History</a>
             <a href="#">Ratings</a>
 
@@ -442,7 +653,16 @@
             <a href="#" id="logout-button">Logout</a>
             <button class="close-button" id="close-button">Close</button> <!-- Close Button -->
         </nav>
+<!-- Overlay background -->
+<div id="overlay"></div>
 
+<!-- Booking history container -->
+<div id="booking-history-container">
+    <button class="close-button" id="close-button">&times;</button> <!-- Close button -->
+    <div class="content" id="booking-content">
+        <!-- Dynamic booking items will be inserted here -->
+    </div>
+</div>
 
     </header>
 
@@ -450,7 +670,13 @@
         <div id="welcome-message" class="welcome-message">
             <h1>Welcome, <span id="mechanic-name"></span>!</h1>
         </div>
-
+        <div class="notification-container">
+            <h2>Upcoming Booking</h2>
+            <div id="booking-status">Currently no booking available.</div>
+            <div id="booking-list"></div>
+            <button class="button" onclick="fetchBookings()">Refresh</button>
+        </div>
+        
 
     </main>
 
@@ -469,7 +695,7 @@
     </div>
 
 
-
+    
 
     <!-- Your content will go here -->
 
@@ -736,6 +962,137 @@
     });
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    fetchBookings();
+});
+
+function fetchBookings() {
+    fetch('http://localhost:3000/api/bookings')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayBookings(data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            document.getElementById('upcoming-container').innerText = 'Error fetching bookings.';
+        });
+}
+
+function displayBookings(bookings) {
+    const upcomingContainer = document.getElementById('upcoming-container');
+    upcomingContainer.innerHTML = ''; // Clear previous bookings
+
+    if (bookings.length === 0) {
+        upcomingContainer.innerText = 'No upcoming bookings.';
+        return;
+    }
+
+    bookings.forEach(booking => {
+        const bookingDiv = document.createElement('div');
+        bookingDiv.innerText = `Customer: ${booking.customer_name}, Vehicle: ${booking.vehicle_info}, Service: ${booking.service_type}, Location: ${booking.location}, Model: ${booking.vehicle_model}`;
+        upcomingContainer.appendChild(bookingDiv);
+    });
+}
+document.getElementById('bookings-link').addEventListener('click', () => {
+    fetch('http://localhost:3000/api/bookings') // Fetch all bookings
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayBookingHistory(data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+});
+
+function displayBookingHistory(bookings) {
+    const bookingHistoryContainer = document.getElementById('booking-history-container');
+    bookingHistoryContainer.innerHTML = ''; // Clear previous content
+
+    if (bookings.length === 0) {
+        bookingHistoryContainer.innerText = 'No booking history available.';
+        return;
+    }
+
+    bookings.forEach(booking => {
+        const bookingDiv = document.createElement('div');
+        const status = booking.status; // Fetch booking status from the booking object
+
+        // Display booking info with status
+        bookingDiv.innerHTML = `
+            <p>Customer: ${booking.customer_name}, Vehicle: ${booking.vehicle_info}, 
+               Service: ${booking.service_type}, Location: ${booking.location}, 
+               Model: ${booking.vehicle_model}, Distance: ${booking.distance || 'N/A'},
+               Issue: ${booking.issue || 'N/A'}, Status: ${status}</p>
+        `;
+
+        // Add classes based on booking status
+        if (status === 'accepted') {
+            bookingDiv.classList.add('accepted-booking');
+        } else if (status === 'rejected') {
+            bookingDiv.classList.add('rejected-booking');
+        } else if (status === 'canceled') {
+            bookingDiv.classList.add('canceled-booking');
+        }
+
+        bookingHistoryContainer.appendChild(bookingDiv);
+    });
+}
+// Display booking history with data from the backend
+document.getElementById('bookings-link').addEventListener('click', function () {
+    fetch('http://localhost:3000/api/bookings') // Replace with your actual API endpoint
+        .then(response => response.json())
+        .then(data => displayBookingHistory(data))
+        .catch(error => console.error('Error fetching bookings:', error));
+
+    // Show the booking history container and overlay
+    document.getElementById('booking-history-container').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+});
+
+// Hide the booking history container and overlay
+document.getElementById('close-button').addEventListener('click', hideBookingHistory);
+document.getElementById('overlay').addEventListener('click', hideBookingHistory);
+
+function hideBookingHistory() {
+    document.getElementById('booking-history-container').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+}
+
+// Display the booking history
+function displayBookingHistory(bookings) {
+    const bookingContent = document.getElementById('booking-content');
+    bookingContent.innerHTML = ''; // Clear previous content
+
+    if (bookings.length === 0) {
+        bookingContent.innerHTML = '<p>No previous bookings available.</p>';
+        return;
+    }
+
+    bookings.forEach(booking => {
+        const bookingDiv = document.createElement('div');
+        bookingDiv.classList.add('booking-item');
+        bookingDiv.innerHTML = `
+            <div><strong>Customer:</strong> ${booking.customer_name}</div>
+            <div><strong>Distance:</strong> ${booking.distance || 'N/A'}</div>
+            <div><strong>Service:</strong> ${booking.service_type}</div>
+            <div><strong>Location:</strong> ${booking.location}</div>
+            <div><strong>Model:</strong> ${booking.vehicle_model}</div>
+            <div><strong>Status:</strong> ${booking.status}</div>
+            <div><strong>Issue:</strong> ${booking.issue || 'N/A'}</div>
+        `;
+        bookingContent.appendChild(bookingDiv);
+    });
+}
 
 
     </script>

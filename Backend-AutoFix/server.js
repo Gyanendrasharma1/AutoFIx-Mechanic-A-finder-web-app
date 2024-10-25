@@ -144,10 +144,8 @@ app.get('/get-mechanic-data', (req, res) => {
         }
     });
 });
-// Endpoint to update mechanic status
 app.post('/api/update-mechanic-status', (req, res) => {
-    const { status } = req.body; // Get the status from the request body
-    const mobileNumber = req.user.mobile; // Assuming you have user authentication to get mobile number
+    const { status, mobileNumber } = req.body; // Get the status and mobile number from the request body
 
     // Validate the status
     if (status !== 'online' && status !== 'offline') {
@@ -155,7 +153,7 @@ app.post('/api/update-mechanic-status', (req, res) => {
     }
 
     // Update the mechanic's status in the database
-    const query = 'UPDATE mechanics SET availability = ? WHERE mobileNumber = ?'; // Adjust column name if necessary
+    const query = 'UPDATE mechanics SET availability = ? WHERE mobileNumber = ?';
     db.query(query, [status, mobileNumber], (error, results) => {
         if (error) {
             return res.status(500).json({ success: false, message: 'Database error' });
@@ -164,6 +162,96 @@ app.post('/api/update-mechanic-status', (req, res) => {
         return res.json({ success: true, message: 'Status updated successfully' });
     });
 });
+app.post('/api/bookings', (req, res) => {
+    console.log('Request body:', req.body); // Log the incoming request body
+
+    const { customer_name, contact_number, vehicle_info, service_type, location, vehicle_model } = req.body;
+
+    // Validate request data
+    if (!customer_name || !contact_number || !vehicle_info || !service_type || !location || !vehicle_model) {
+        return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    // Insert the booking into the database
+    const query = 'INSERT INTO bookings (customer_name, contact_number, vehicle_info, service_type, location, vehicle_model) VALUES (?, ?, ?, ?, ?, ?)';
+    
+    db.query(query, [customer_name, contact_number, vehicle_info, service_type, location, vehicle_model], (err, result) => {
+        if (err) {
+            console.error('Error inserting booking:', err);
+            return res.status(500).json({ message: 'Error adding booking.' });
+        }
+        res.status(201).json({ message: 'Booking added successfully.', bookingId: result.insertId });
+    });
+});
+// GET endpoint to retrieve all bookings
+app.get('/api/bookings', (req, res) => {
+    const query = 'SELECT * FROM bookings';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching bookings:', err);
+            return res.status(500).json({ message: 'Error fetching bookings' });
+        }
+        res.json(results);
+    });
+});
+// Fetch all bookings sorted by most recent, including status
+app.get('/api/bookings', (req, res) => {
+    const query = `SELECT customer_name, contact_number, vehicle_info, service_type, location, vehicle_model, 
+                          status, created_at, distance, issue 
+                   FROM bookings 
+                   ORDER BY created_at DESC`; // Sorted by most recent first
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching bookings:', err);
+            return res.status(500).json({ message: 'Error fetching bookings' });
+        }
+        res.json(results);
+    });
+});
+
+// Update the booking status (accept, reject, or cancel)
+app.post('/api/bookings/:id/status', (req, res) => {
+    const bookingId = req.params.id;
+    const { status } = req.body;
+
+    // Validate the status
+    if (!['accepted', 'rejected', 'canceled'].includes(status)) {
+        return res.status(400).json({ message: 'Invalid status value' });
+    }
+
+    const query = 'UPDATE bookings SET status = ? WHERE id = ?';
+    db.query(query, [status, bookingId], (err, result) => {
+        if (err) {
+            console.error('Error updating booking status:', err);
+            return res.status(500).json({ message: 'Error updating booking status' });
+        }
+        res.json({ message: 'Booking status updated successfully' });
+    });
+});
+
+// Create a new booking (optional, in case new bookings need to be added)
+app.post('/api/bookings', (req, res) => {
+    const { customer_name, contact_number, vehicle_info, service_type, location, vehicle_model, distance, issue } = req.body;
+
+    // Validate the input
+    if (!customer_name || !contact_number || !vehicle_info || !service_type || !location || !vehicle_model) {
+        return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    const query = `INSERT INTO bookings (customer_name, contact_number, vehicle_info, service_type, 
+                                         location, vehicle_model, distance, issue, status) 
+                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending')`;
+    
+    db.query(query, [customer_name, contact_number, vehicle_info, service_type, location, vehicle_model, distance, issue], (err, result) => {
+        if (err) {
+            console.error('Error inserting booking:', err);
+            return res.status(500).json({ message: 'Error adding booking.' });
+        }
+        res.status(201).json({ message: 'Booking added successfully.', bookingId: result.insertId });
+    });
+});
+
 
 // Serve the landing page (only if user is logged in)
 app.get('/landing-page', (req, res) => {
