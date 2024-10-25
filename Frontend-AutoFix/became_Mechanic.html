@@ -562,7 +562,6 @@ h2 {
 
 /* Booking item styling */
 .booking-item {
-    
     background-color: #ffffff;
     padding: 15px;
     margin: 15px 0;
@@ -1048,15 +1047,17 @@ function displayBookingHistory(bookings) {
     });
 }
 // Display booking history with data from the backend
+// Display booking history with data from the backend
 document.getElementById('bookings-link').addEventListener('click', function () {
     fetch('http://localhost:3000/api/bookings') // Replace with your actual API endpoint
         .then(response => response.json())
-        .then(data => displayBookingHistory(data))
+        .then(data => {
+            displayBookingHistory(data);
+            // Show the booking history container and overlay
+            document.getElementById('booking-history-container').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        })
         .catch(error => console.error('Error fetching bookings:', error));
-
-    // Show the booking history container and overlay
-    document.getElementById('booking-history-container').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
 });
 
 // Hide the booking history container and overlay
@@ -1078,6 +1079,9 @@ function displayBookingHistory(bookings) {
         return;
     }
 
+    // Reverse the bookings array to show the latest bookings on top
+    bookings.reverse();
+
     bookings.forEach(booking => {
         const bookingDiv = document.createElement('div');
         bookingDiv.classList.add('booking-item');
@@ -1093,6 +1097,7 @@ function displayBookingHistory(bookings) {
         bookingContent.appendChild(bookingDiv);
     });
 }
+
 
 
     </script>
