@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
    <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+
+
+</style>
 </head>
 
 <body>
@@ -25,44 +29,38 @@
                     <li><a href="#" id="becomeMechanicLink">Become a Mechanic</a></li> 
                     <li><a href="customer_support.html" >Customer Support</a></li>
                     <li><a href="about_us.html">About Us</a></li>
-                     <!-- Login/Sign Up Button -->
-            <li><button id="login-signup-button" class="icon-button">Login / Sign Up</button></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <section id="hero-banner">
-            <div id="slideshow-container">
-                <div class="mySlides fade">
-                    <img src="mechanic1.jpg" class="slide-image" alt="Mechanic Working on a Car">
-                    <div class="text-overlay">
-                        <h1>Welcome to AutoFix!</h1>
-                        <p>Your trusted solution for finding the best mechanics.</p>
-                    </div>
-                </div>
-    
-                <div class="mySlides fade">
-                    <img src="mechanic2.jpg" class="slide-image" alt="Customer Satisfaction Guaranteed">
-                    <div class="text-overlay">
-                        <h1>Welcome to AutoFix!</h1>
-                        <p>Your trusted solution for finding the best mechanics.</p>
-                    </div>
-                </div>
-    
-                <div class="mySlides fade">
-                    <img src="mechanic3.jpg" class="slide-image" alt="Expert Mechanics at Your Service">
-                    <div class="text-overlay">
-                        <h1>Welcome to AutoFix!</h1>
-                        <p>Your trusted solution for finding the best mechanics.</p>
-                    </div>
-                </div>
-    
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        <div class="login-signup-container" id="login-signup-container">
+            <h2>Login / Signup</h2>
+            <div id="mobile-input">
+                <label for="mobile-no">Enter Mobile Number:</label>
+                <input type="text" id="mobile-no" placeholder="Mobile Number" required>
+                <button onclick="sendOtp()">Send OTP</button>
             </div>
-        </section>
+    
+            <div id="otp-input" style="display: none;">
+                <label for="otp">Enter OTP:</label>
+                <input type="text" id="otp" placeholder="OTP" required>
+                <button onclick="verifyOtp()">Enter</button>
+            </div>
+    
+            <div id="registration-form" style="display: none;">
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" placeholder="Full Name" required>
+                <input type="text" id="reg-mobile-no" placeholder="Mobile Number" readonly>
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                <button onclick="register()">Sign Up</button>
+            </div>
+        </div>
+       
     
         <section id="content-info">
             <h2>Why Choose AutoFix?</h2>
@@ -289,52 +287,6 @@
            
             
         </footer>
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('loginModal')">&times;</span>
-        <div class="modal-header">
-            <h2>Login</h2>
-        </div>
-        <form id="loginForm">
-            <label for="loginEmail">Email:</label>
-            <input type="email" id="loginEmail" name="loginEmail" required>
-            
-            <label for="loginPassword">Password:</label>
-            <input type="password" id="loginPassword" name="loginPassword" required>
-            
-            <button type="submit">Login</button>
-        </form>
-        <div id="form-toggle">
-            <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
-        </div>
-    </div>
-</div>
-
-<!-- Signup Modal -->
-<div id="signupModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal('signupModal')">&times;</span>
-        <div class="modal-header">
-            <h2>Sign Up</h2>
-        </div>
-        <form id="signupForm">
-            <label for="signupName">Name:</label>
-            <input type="text" id="signupName" name="signupName" required>
-            
-            <label for="signupEmail">Email:</label>
-            <input type="email" id="signupEmail" name="signupEmail" required>
-            
-            <label for="signupPassword">Password:</label>
-            <input type="password" id="signupPassword" name="signupPassword" required>
-            
-            <button type="submit">Sign Up</button>
-        </form>
-        <div id="form-toggle">
-            <p>Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
-        </div>
-    </div>
-</div>
 
 <!-- Modal for Mobile Number and OTP -->
 <div id="mechanicModal" class="modal-mechanic" style="display: none;">
@@ -359,117 +311,147 @@
 </div>
 <!-- Include your JavaScript here -->
  <script>
-    document.getElementById('signupForm').addEventListener('submit', function (event) {
-        event.preventDefault();
+// Simulated OTP (for demonstration purposes)
+const simulatedOtp = "1234";
 
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+// Function to send OTP
+function sendOtp() {
+    const mobileNo = document.getElementById("mobile-no").value;
 
-        fetch('http://localhost:3000/api/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, email, password }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert(data.message);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    });
-</script>
-<script>
-    document.getElementById('loginForm').addEventListener('submit', function (event) {
-        event.preventDefault();
-
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-
-        fetch('http://localhost:3000/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            if (data.message === 'Login successful') {
-                // Redirect to the home page after successful login
-                window.location.href = '/home.html';
-            } else {
-                alert('Invalid credentials');
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    });
-</script>
-<script>
-    // Check login state from localStorage on page load
-    window.onload = function() {
-        const userSession = JSON.parse(localStorage.getItem('userSession'));
-        if (userSession) {
-            document.getElementById('login-signup-button').innerText = "Logout"; // Update to Logout if logged in
-            isLoggedIn = true;
-        }
-    };
-
-    // Logout function
-    function logout() {
-        localStorage.removeItem('userSession'); // Remove session from localStorage
-        isLoggedIn = false;
-        document.getElementById('login-signup-button').innerText = "Login / Sign Up"; // Reset button text
-        alert("You have been logged out.");
-        window.location.href = "index.html"; // Redirect to home page
+    if (!mobileNo) {
+        alert("Please enter a mobile number.");
+        return;
     }
 
-    // Toggle login/logout
-    document.getElementById('login-signup-button').addEventListener('click', function () {
-        if (isLoggedIn) {
-            logout();
+    // Simulating OTP sending process
+    console.log(`Sending OTP ${simulatedOtp} to ${mobileNo}`);
+
+    // Here, you would normally make an API call to send the OTP.
+    // For demonstration purposes, we will show the OTP input directly.
+    document.getElementById("mobile-input").style.display = "none";
+    document.getElementById("otp-input").style.display = "block";
+}
+
+// Function to verify OTP
+function verifyOtp() {
+    const enteredOtp = document.getElementById("otp").value;
+    const mobileNo = document.getElementById("mobile-no").value;
+
+    // Check if the entered OTP matches the simulated OTP
+    if (enteredOtp !== simulatedOtp) {
+        alert("Invalid OTP. Please try again.");
+        return;
+    }
+
+    // Make an API call to check if the mobile number is already registered
+    fetch('/api/check-mobile', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ mobile_no: mobileNo })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.exists) {
+            // If the mobile number exists, store it and redirect to findmechanic.html
+            sessionStorage.setItem('loggedInMobile', mobileNo); // Store mobile number
+            window.location.href = 'findmechanic.html';
         } else {
-            openModal('loginModal');
+            // If it does not exist, show the registration form
+            document.getElementById("otp-input").style.display = "none";
+            document.getElementById("registration-form").style.display = "block";
+            document.getElementById("reg-mobile-no").value = mobileNo; // Autofill mobile number
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
     });
+}
 
-    let slideIndex = 0;
-showSlides();
+// Function to register the user
+function register() {
+    const fullName = document.getElementById("full-name").value;
+    const mobileNo = document.getElementById("reg-mobile-no").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
 
-function showSlides() {
-    let i;
-    const slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+    if (!fullName || !mobileNo || !password || !confirmPassword) {
+        alert("Please fill in all fields.");
+        return;
     }
-    slideIndex++;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    slides[slideIndex - 1].style.display = "block";  
-    setTimeout(showSlides, 3000); // Change image every 3 seconds
-}
 
-function plusSlides(n) {
-    slideIndex += n;
-    if (slideIndex > slides.length) {slideIndex = 1}    
-    if (slideIndex < 1) {slideIndex = slides.length}
-    showSlidesManual(slideIndex);
-}
-
-function showSlidesManual(index) {
-    let i;
-    const slides = document.getElementsByClassName("mySlides");
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";  
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
     }
-    slides[index - 1].style.display = "block";  
+
+    // Make an API call to register the user
+    fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ full_name: fullName, mobile_no: mobileNo, password: password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            sessionStorage.setItem('loggedInMobile', mobileNo); // Store mobile number
+            window.location.href = 'findmechanic.html'; // Redirect after successful registration
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
+
+// Function to show user details
+function showUserDetails() {
+    const mobileNo = sessionStorage.getItem('loggedInMobile'); // Get mobile number from session
+
+    if (!mobileNo) {
+        alert("User not logged in.");
+        return;
+    }
+
+    fetch('/api/get-user-details', { // API call to get user details
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ mobile_no: mobileNo })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById("user-info").innerText = `Full Name: ${data.full_name}, Mobile No: ${data.mobile_no}`;
+            document.getElementById("user-details-modal").style.display = "block"; // Show modal
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+// Function to close user details modal
+function closeUserDetails() {
+    document.getElementById("user-details-modal").style.display = "none";
+}
+
+// Function to log out the user
+function logout() {
+    sessionStorage.removeItem('loggedInMobile'); // Remove mobile number from session
+    window.location.href = 'landing-page.html'; // Redirect to landing page or login
+}
+
+
+
+    
 
 // 16-oct-2024
 document.addEventListener("DOMContentLoaded", function() {

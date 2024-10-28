@@ -1242,3 +1242,100 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+/* Container Styles */
+.login-signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 30px;
+    border: 1px solid #007bff;
+    border-radius: 15px;
+    background-color: #f0f8ff;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease; /* Fade-in animation */
+}
+
+/* Heading Style */
+.login-signup-container h2 {
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif;
+    color: #007bff;
+    font-size: 24px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Label Style */
+.login-signup-container label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input Field Styles */
+.login-signup-container input {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #007bff; /* Blue border */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transition for focus effect */
+}
+
+/* Input Field Focus Effect */
+.login-signup-container input:focus {
+    border-color: #0056b3; /* Darker blue */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Light blue shadow */
+}
+
+/* Button Styles */
+.login-signup-container button {
+    margin-top: 15px;
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s; /* Transition for hover effect */
+}
+
+/* Button Hover Effect */
+.login-signup-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Animation for the container */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Slide from top */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .login-signup-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .login-signup-container h2 {
+        font-size: 20px;
+    }
+
+    .login-signup-container input,
+    .login-signup-container button {
+        font-size: 14px;
+    }
+}

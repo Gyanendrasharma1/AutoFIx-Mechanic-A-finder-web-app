@@ -251,95 +251,70 @@ app.post('/api/bookings', (req, res) => {
         res.status(201).json({ message: 'Booking added successfully.', bookingId: result.insertId });
     });
 });
-
-
-// Serve the landing page (only if user is logged in)
-app.get('/landing-page', (req, res) => {
-    if (req.session.loggedIn) {
-        res.sendFile(path.join(__dirname, '../Frontend-AutoFix/landing-page.html'));
-    } else {
-        res.redirect('/'); // Redirect to home page if not logged in
-    }
-});
-
-// Serve the index page (root request)
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../Frontend-AutoFix/index.html'));
-});
-
-// Sign-up logic: Insert user into the database
-app.post('/api/signup', (req, res) => {
-    const { username, email, password } = req.body;
-
-    const checkUserSql = 'SELECT * FROM users WHERE email = ?';
-    db.query(checkUserSql, [email], (err, results) => {
-        if (err) {
-            console.error('Error checking for existing user:', err);
-            return res.status(500).json({ message: 'Error signing up user' });
+// Endpoint to check if mobile number is registered
+app.post('/api/check-mobile', (req, res) => {
+    const { mobile_no } = req.body;
+    
+    db.query('SELECT * FROM users WHERE mobile_no = ?', [mobile_no], (error, results) => {
+        if (error) {
+            return res.status(500).json({ error: 'Database error' });
         }
+
+        // Check if the user exists
         if (results.length > 0) {
-            return res.status(409).json({ message: 'Email already in use' });
+            return res.json({ exists: true });
+        } else {
+            return res.json({ exists: false });
         }
-
-        bcrypt.hash(password, 10, (err, hash) => {
-            if (err) {
-                console.error('Error hashing password:', err);
-                return res.status(500).json({ message: 'Error signing up user' });
-            }
-
-            const sql = `INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)`;
-            db.query(sql, [username, email, hash], (err, result) => {
-                if (err) {
-                    console.error('Error inserting user:', err);
-                    return res.status(500).json({ message: 'Error signing up user' });
-                }
-                console.log('User signed up successfully:', result);
-                res.json({ message: 'User signed up successfully' });
-            });
-        });
     });
 });
 
-// Login logic: Validate user credentials and set session
-app.post('/api/login', (req, res) => {
-    const { email, password } = req.body;
+// Endpoint to register the user
+app.post('/api/register', (req, res) => {
+    const { full_name, mobile_no, password } = req.body;
 
-    const sql = `SELECT * FROM users WHERE email = ?`;
-    db.query(sql, [email], (err, results) => {
-        if (err) {
-            console.error('Error during login:', err);
-            return res.status(500).json({ message: 'Error logging in' });
+    // Insert new user into the database
+    db.query('INSERT INTO users (full_name, mobile_no, password) VALUES (?, ?, ?)', [full_name, mobile_no, password], (error, results) => {
+        if (error) {
+            return res.status(500).json({ success: false, message: 'Database error or mobile number already exists.' });
         }
+
+        return res.json({ success: true });
+    });
+});
+
+// API endpoint to get user details
+app.post('/api/get-user-details', (req, res) => {
+    const { mobile_no } = req.body;
+
+    if (!mobile_no) {
+        return res.status(400).json({ success: false, message: 'Mobile number is required.' });
+    }
+
+    const query = 'SELECT full_name, mobile_no FROM users WHERE mobile_no = ?'; // Adjust according to your table name
+    db.query(query, [mobile_no], (error, results) => {
+        if (error) {
+            return res.status(500).json({ success: false, message: 'Database error: ' + error });
+        }
+
         if (results.length > 0) {
-            const user = results[0];
-            bcrypt.compare(password, user.password_hash, (err, isMatch) => {
-                if (err) {
-                    console.error('Error comparing passwords:', err);
-                    return res.status(500).json({ message: 'Error logging in' });
-                }
-                if (isMatch) {
-                    req.session.loggedIn = true; // Set session loggedIn to true
-                    req.session.user = { id: user.user_id, username: user.username, email: user.email }; // Store user data in session
-                    return res.json({ message: 'Login successful', user: req.session.user });
-                } else {
-                    return res.status(401).json({ message: 'Invalid credentials' });
-                }
+            // User found
+            res.json({
+                success: true,
+                full_name: results[0].full_name,
+                mobile_no: results[0].mobile_no
             });
         } else {
-            return res.status(401).json({ message: 'Invalid credentials' });
+            // User not found
+            res.json({ success: false, message: 'User not found.' });
         }
     });
 });
 
-// Logout logic: Destroy the session
+// Logout (In this context, logout is managed client-side)
 app.post('/api/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            console.error('Error logging out:', err);
-            return res.status(500).json({ message: 'Error logging out' });
-        }
-        res.json({ message: 'Logged out successfully' });
-    });
+    // No action needed for logout since session is managed on the client
+    res.json({ success: true, message: 'User logged out successfully.' });
 });
 
 // Start server
