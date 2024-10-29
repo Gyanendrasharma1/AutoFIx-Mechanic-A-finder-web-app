@@ -42,10 +42,10 @@
                 <input type="text" id="mobile-no" placeholder="Mobile Number" required>
                 <button onclick="sendOtp()">Send OTP</button>
             </div>
-    
+
             <div id="otp-input" style="display: none;">
-                <label for="otp">Enter OTP:</label>
-                <input type="text" id="otp" placeholder="OTP" required>
+                <label for="otp-unique">Enter OTP:</label>
+                <input type="text" class="otp-input-unique" id="otp-unique" placeholder="OTP" required>
                 <button onclick="verifyOtp()">Enter</button>
             </div>
     
@@ -326,15 +326,14 @@ function sendOtp() {
     // Simulating OTP sending process
     console.log(`Sending OTP ${simulatedOtp} to ${mobileNo}`);
 
-    // Here, you would normally make an API call to send the OTP.
-    // For demonstration purposes, we will show the OTP input directly.
+    // Show the OTP input directly
     document.getElementById("mobile-input").style.display = "none";
     document.getElementById("otp-input").style.display = "block";
 }
 
 // Function to verify OTP
 function verifyOtp() {
-    const enteredOtp = document.getElementById("otp").value;
+    const enteredOtp = document.getElementById("otp-unique").value; // Updated to use the unique ID
     const mobileNo = document.getElementById("mobile-no").value;
 
     // Check if the entered OTP matches the simulated OTP
@@ -368,6 +367,7 @@ function verifyOtp() {
         console.error('Error:', error);
     });
 }
+
 
 // Function to register the user
 function register() {
