@@ -219,6 +219,292 @@ span {
     }
 }
 
+/* Container Styling */
+.user-location-entry {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    text-align: center;
+    border-top: 5px solid #007bff; /* Blue accent border on top */
+    margin-left: 360px;
+    margin-top: 50px;
+}
+
+/* Title Styling */
+.user-location-entry h2 {
+    color: #007bff;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Input Field Styling */
+#location-input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+#location-input:focus {
+    border-color: #007bff;
+}
+
+/* Use Current Location Button */
+#use-current-location {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#use-current-location:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+}
+
+/* Enter Location Button */
+#enter-location {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+#enter-location:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .user-location-entry {
+        padding: 1.5rem;
+    }
+
+    #location-input,
+    #use-current-location,
+    #enter-location {
+        font-size: 0.9rem;
+        padding: 0.65rem;
+    }
+}
+/* Vehicle Info Container Styling */
+#vehicle-info {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Subtle gradient */
+    border-radius: 12px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin-left: 400px;
+}
+
+#vehicle-info h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Label styling */
+#vehicle-info label {
+    display: block;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: #e0e0e0;
+    font-size: 1.1em;
+}
+
+/* Select input styling */
+#vehicle-info select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1em;
+    background-color: #ffffff;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+#vehicle-info select:disabled {
+    background-color: #e0e0e0;
+    color: #777;
+}
+
+#vehicle-info select:focus {
+    outline: none;
+    border: 2px solid #0056b3; /* Darker blue border on focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Adding a subtle hover effect on selects */
+#vehicle-info select:hover {
+    background-color: #f9f9f9;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    #vehicle-info {
+        padding: 20px;
+        font-size: 0.9em;
+    }
+
+    #vehicle-info h2 {
+        font-size: 1.5em;
+    }
+}
+#enter-vehicle-info {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#enter-vehicle-info:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+#enter-vehicle-info:active {
+    background-color: #004080; /* Even darker blue for active effect */
+    box-shadow: none;
+}
+  /* Styling for the unique container */
+  .services-info-container {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 20px;
+        border: 2px solid #007bff;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        color: #333;
+        font-family: Arial, sans-serif;
+    }
+    
+    .services-info-container h2 {
+        text-align: center;
+        color: #007bff;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .services-info-container label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* Dropdown styling */
+    #serviceType {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        margin: 10px 0 20px;
+        color: #333;
+    }
+    
+    /* Section styling */
+    .services-info-section {
+        display: none;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-top: 10px;
+    }
+    
+    .services-info-section label {
+        display: block;
+        margin-bottom: 8px;
+    }
+    
+    /* Checkbox section */
+    #emergencyIssues, #routineIssues {
+        margin-bottom: 15px;
+    }
+    
+    /* Date-time input */
+    input[type="datetime-local"] {
+        width: 100%;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+    
+    /* Button styling */
+    .services-info-section button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .services-info-section button:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Checkbox styling */
+    input[type="checkbox"] {
+        margin-right: 8px;
+        accent-color: #007bff;
+    }
+    
+    /* Checkbox label styling */
+    #emergencyIssues div, #routineIssues div {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+    /* Ensure all service sections are hidden initially */
+.services-info-section {
+    display: none;
+}
+
+/* Add a class to control visibility */
+.show {
+    display: block;
+}
+
   </style>
        
 
@@ -263,8 +549,90 @@ span {
     
     <main id="user-main">
         <h2 id="welcome-message"></h2>
-       
+
+        <div class="user-location-entry" id="user-location-entry">
+            <h2>Enter Your Location</h2>
+            
+            <!-- Location Input Field -->
+            <div class="user-location-input-group">
+                <input type="text" id="location-input" placeholder="Enter location manually" />
+                <button id="use-current-location">Use Current Location</button>
+            </div>
         
+            <!-- Confirmation Button -->
+            <button id="enter-location">Enter Location</button>
+        </div>
+        
+        <!-- Vehicle Info Form (initially hidden) -->
+        <div id="vehicle-info" style="display: none;">
+            <h2>Select Vehicle Information</h2>
+            
+            <label for="vehicle-type">Vehicle Type:</label>
+            <select id="vehicle-type">
+                <option value="">Select Vehicle Type</option>
+                <option value="car">Car</option>
+                <option value="bike">Bike</option>
+                <option value="scooty">Scooty</option>
+            </select>
+        
+            <label for="vehicle-company">Company Name:</label>
+            <select id="vehicle-company" disabled>
+                <option value="">Select Company</option>
+            </select>
+        
+            <label for="vehicle-model">Model Name:</label>
+            <select id="vehicle-model" disabled>
+                <option value="">Select Model</option>
+            </select>
+
+           <!-- Enter Button -->
+    <button id="enter-vehicle-info">Enter</button> 
+   </div>
+
+   <div id="services-info" class="services-info-container" style="display: none;">
+    <h2>Services Info</h2>
+    <label for="serviceType">Select Type of Service:</label>
+    <select id="serviceType">
+        <option value="">--Select--</option>
+        <option value="emergency">Emergency Service</option>
+        <option value="routine">Routine Maintenance</option>
+        <option value="monthly">Monthly Service Package</option>
+    </select>
+
+    <!-- Emergency Service Section -->
+    <div id="emergencySection" class="services-info-section">
+        <label for="emergencyIssues">Issue (optional):</label>
+        <div id="emergencyIssues">
+            <!-- Dynamically populated with issue checkboxes -->
+        </div>
+        <button onclick="enterServiceInfo()">Enter</button>
+    </div>
+
+    <!-- Routine Maintenance Section -->
+    <div id="routineSection" class="services-info-section">
+        <label for="routineIssues">Issue (optional):</label>
+        <div id="routineIssues">
+            <!-- Dynamically populated with issue checkboxes -->
+        </div>
+        <label for="routineDateTime">Date and Time:</label>
+        <input type="datetime-local" id="routineDateTime">
+        <button onclick="enterServiceInfo()">Enter</button>
+    </div>
+
+    <!-- Monthly Service Package Section -->
+    <div id="monthlySection" class="services-info-section">
+        <label for="monthlyDateTime">Date and Time:</label>
+        <input type="datetime-local" id="monthlyDateTime">
+        <button onclick="enterServiceInfo()">Enter</button>
+    </div>
+</div>
+
+<div id="mechanic-search-container" style="display: none;">
+    <h2>Searching for nearby mechanics...</h2>
+    <!-- You can add loading indicators or further information here -->
+</div>
+
+
     </main>
     
     <!-- User Details Modal -->
@@ -387,8 +755,259 @@ document.querySelector(".user-logout-button").addEventListener("click", function
     window.location.href = 'index.html'; // Redirect to the landing page or login
 });
 
+// Function to handle getting the user's current location
+function getCurrentLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
 
-</script>
+function success(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+    getPlaceName(latitude, longitude);
+}
+
+function error() {
+    alert("Unable to retrieve your location. Please try again.");
+}
+
+// Function to reverse geocode using OpenStreetMap Nominatim
+function getPlaceName(lat, lon) {
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.display_name) {
+                document.getElementById('location-input').value = data.display_name; // Fill the input field with the address
+            } else {
+                alert("Unable to retrieve address. Please try again.");
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching location data:', error);
+            alert("An error occurred while fetching the location data.");
+        });
+}
+
+// Event listener for the button to get current location
+document.getElementById('use-current-location').addEventListener('click', getCurrentLocation);
+
+// Vehicle data
+const vehicleData = {
+    scooty: {
+        "Honda": ["Activa", "Dio", "Grazia", "Navi", "SH125i"],
+        "TVS": ["Jupiter", "Ntorq 125", "Scooty Pep+", "XL100", "Radeon"],
+        "Bajaj": ["Chetak", "Avenger Street", "CT 100", "Pulsar RS 200"],
+        "Yamaha": ["Fascino", "Ray ZR", "NMAX 155", "Aerox 155"],
+        "Suzuki": ["Access 125", "Burgman Street", "Let's", "Address"],
+        "Hero MotoCorp": ["Pleasure", "Maestro Edge", "Destini 125", "Dash"],
+        "KTM": ["KTM 200 Duke", "KTM 390 Duke"],
+        "Vespa": ["Primavera", "GTS Super", "LX", "S"],
+        "Piaggio": ["Liberty 125", "Medley 125", "Fly 150"],
+        "Lambretta": ["V-Special", "GT", "3-Wheeler"],
+        "Mahindra": ["Gusto", "Duro DZ"],
+        "Aprilia": ["SR 125", "SR 150", "Storm 125"],
+        "Norton": ["Norton Commando 961"],
+        "Ather Energy": ["Ather 450X", "Ather 450 Plus"],
+        "Okinawa": ["Praise", "Ridge", "i-Praise"],
+    },
+    car: {
+        "Toyota": ["Camry", "Corolla", "RAV4"],
+        "Honda": ["Civic", "Accord", "CR-V"],
+        "Ford": ["Fiesta", "Focus", "Mustang"],
+        "Chevrolet": ["Malibu", "Impala", "Camaro"],
+        "Hyundai": ["Elantra", "Sonata", "Tucson"],
+        "Kia": ["Rio", "Optima", "Sportage"],
+        "Nissan": ["Altima", "Maxima", "Rogue"],
+        "Volkswagen": ["Jetta", "Passat", "Tiguan"],
+        "Subaru": ["Impreza", "Outback", "Forester"],
+        "Mazda": ["Mazda3", "Mazda6", "CX-5"],
+        "BMW": ["3 Series", "5 Series", "X3"],
+        "Mercedes-Benz": ["C-Class", "E-Class", "GLA"],
+    },
+    bike: {
+        "Hero": ["Splendor", "Passion", "Glamour"],
+        "Honda": ["CB Shine", "CBR", "Unicorn"],
+        "Bajaj": ["Pulsar", "Avenger", "Dominar"],
+        "TVS": ["Apache", "Victor", "Jupiter"],
+        "Yamaha": ["FZ", "R15", "MT-15"],
+        "Kawasaki": ["Ninja 300", "Z900", "Versys"],
+        "Suzuki": ["Gixxer", "Access", "V-Strom"],
+        "Royal Enfield": ["Bullet", "Classic", "Himalayan"],
+    }
+};
+
+// Show vehicle info form when "Enter Location" is clicked
+document.getElementById('enter-location').addEventListener('click', function() {
+    const locationInput = document.getElementById('location-input').value;
+    if (locationInput) {
+        // Hide the user location entry section
+        document.getElementById('user-location-entry').style.display = 'none';
+        
+        // Show the vehicle info section
+        document.getElementById('vehicle-info').style.display = 'block';
+    } else {
+        alert("Please enter a location.");
+    }
+});
+
+// Populate company names based on vehicle type selection
+document.getElementById('vehicle-type').addEventListener('change', function() {
+    const type = this.value;
+    const companySelect = document.getElementById('vehicle-company');
+    companySelect.innerHTML = '<option value="">Select Company</option>';
+    document.getElementById('vehicle-model').innerHTML = '<option value="">Select Model</option>';
+    companySelect.disabled = !type;
+
+    if (type) {
+        for (const company in vehicleData[type]) {
+            companySelect.innerHTML += `<option value="${company}">${company}</option>`;
+        }
+    }
+});
+
+// Populate model names based on company selection
+document.getElementById('vehicle-company').addEventListener('change', function() {
+    const type = document.getElementById('vehicle-type').value;
+    const company = this.value;
+    const modelSelect = document.getElementById('vehicle-model');
+    modelSelect.innerHTML = '<option value="">Select Model</option>';
+    modelSelect.disabled = !company;
+
+    if (company) {
+        vehicleData[type][company].forEach(model => {
+            modelSelect.innerHTML += `<option value="${model}">${model}</option>`;
+        });
+    }
+});
+
+// Enter button functionality for vehicle info section
+document.getElementById('enter-vehicle-info').addEventListener('click', function() {
+    const vehicleType = document.getElementById('vehicle-type').value;
+    const vehicleCompany = document.getElementById('vehicle-company').value;
+    const vehicleModel = document.getElementById('vehicle-model').value;
+
+    if (vehicleType && vehicleCompany && vehicleModel) {
+        alert(`Vehicle Info Submitted:\nType: ${vehicleType}\nCompany: ${vehicleCompany}\nModel: ${vehicleModel}`);
+        
+        // Hide vehicle info and show services info
+        document.getElementById('vehicle-info').style.display = 'none';
+        document.getElementById('services-info').style.display = 'block';
+    } else {
+        alert("Please select all vehicle information.");
+    }
+});
+
+// Populate issue data (replace with your data)
+const issues = [
+    "Engine Failure",
+    "Flat Tire",
+    "Battery Issues",
+    "Locked Out of Car",
+    "Overheating",
+    "Brake Failure",
+    "Fuel Issues",
+    "Transmission Problems",
+    "Steering Malfunction",
+    "Electrical System Failures",
+    "Coolant Leaks",
+    "Starter Motor Failure",
+    "Suspension Problems",
+    "Broken Belts or Hoses",
+    "Wheel Alignment Issues",
+    "Clutch Malfunction",
+    "Exhaust System Problems",
+    "Power Window Failures",
+    "Air Conditioning Failure",
+    "Headlight/Tail Light Malfunction",
+    "Wheel Bearing Issues",
+    "Emergency Brake Stuck",
+    "Airbag Warning Light",
+    "Broken Windshield Wipers",
+    "Key Ignition Problems",
+    "ABS Light On",
+    "Radiator Issues",
+    "Engine Misfiring",
+    "Tire Pressure Sensor Malfunction",
+    "Catalytic Converter Issues",
+    "Dashboard Warning Lights",
+    "Fuel Pump Failure",
+    "Engine Stalling",
+    "Oil Leaks",
+    "Timing Belt Failure",
+    "Rust and Corrosion",
+    "Water Pump Failure",
+    "Transmission Fluid Leaks",
+    "Differential Problems",
+    "Turbocharger Malfunction"
+];
+
+// Function to populate issues checkboxes
+function populateIssues(sectionId) {
+    const section = document.getElementById(sectionId);
+    section.innerHTML = '';
+    issues.forEach(issue => {
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.value = issue;
+        checkbox.id = issue + '-' + sectionId;
+
+        const label = document.createElement('label');
+        label.htmlFor = checkbox.id;
+        label.textContent = issue;
+
+        const wrapper = document.createElement('div');
+        wrapper.appendChild(checkbox);
+        wrapper.appendChild(label);
+
+        section.appendChild(wrapper);
+    });
+}
+
+// Populate issues for each section
+populateIssues('emergencyIssues');
+populateIssues('routineIssues');
+
+// Display the corresponding section based on service type selection
+document.getElementById('serviceType').addEventListener('change', function() {
+    const emergencySection = document.getElementById('emergencySection');
+    const routineSection = document.getElementById('routineSection');
+    const monthlySection = document.getElementById('monthlySection');
+
+    // Hide all sections
+    emergencySection.classList.remove('show');
+    routineSection.classList.remove('show');
+    monthlySection.classList.remove('show');
+
+    // Show the selected section
+    if (this.value === 'emergency') {
+        emergencySection.classList.add('show');
+    } else if (this.value === 'routine') {
+        routineSection.classList.add('show');
+    } else if (this.value === 'monthly') {
+        monthlySection.classList.add('show');
+    }
+});
+
+// Function to handle "Enter" button
+function enterServiceInfo() {
+    alert("Service information saved!");
+}
+
+function enterServiceInfo() {
+    // Hide services info section
+    document.getElementById('services-info').style.display = 'none';
+    
+    // Show mechanic search container
+    const mechanicSearchContainer = document.getElementById('mechanic-search-container');
+    mechanicSearchContainer.style.display = 'block'; // Assuming you have this container defined
+}
+    </script>
 
 
 
